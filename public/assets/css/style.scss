@@ -1,0 +1,36 @@
+@import "./responsive";
+
+:root {
+    //var(--body-bg): url("../images/texture.webp") no-repeat fixed;
+    //var(--body-bg)-small: url("../images/texture-small.webp") no-repeat fixed;
+    --body-bg: rgb(185, 198, 201);
+}
+
+body {
+    height: 100vh;
+    background: var(--body-bg);
+    font-family: "Montserrat", sans-serif;
+}
+
+/*
+***********************************
+MENU
+***********************************
+*/
+.menu {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 15%;
+    .menu-item {
+        margin-top: 20px;
+
+        @include xs {
+            margin-top: 20% !important;
+        }
+        @include sm {
+            margin-top: 20% !important;
+        }
+    }
+}
