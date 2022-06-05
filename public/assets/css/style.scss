@@ -1,10 +1,5 @@
 @import "./responsive";
-
-:root {
-    //var(--body-bg): url("../images/texture.webp") no-repeat fixed;
-    //var(--body-bg)-small: url("../images/texture-small.webp") no-repeat fixed;
-    --body-bg: rgb(185, 198, 201);
-}
+@import "./settings";
 
 body {
     height: 100vh;
@@ -23,8 +18,17 @@ MENU
     flex-direction: column;
     align-items: center;
     margin-top: 15%;
+    transition: ease-in-out .25s;
     .menu-item {
         margin-top: 20px;
+        cursor: pointer;
+
+        &:hover {
+            font-weight: bold;
+            color: var(--secondary-color);
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.493);
+            transition: ease-in-out .25s;
+        }
 
         @include xs {
             margin-top: 20% !important;
@@ -33,4 +37,8 @@ MENU
             margin-top: 20% !important;
         }
     }
+}
+
+.nav-link {
+     font-weight: bold !important;
 }

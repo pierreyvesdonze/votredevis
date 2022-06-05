@@ -5,6 +5,8 @@ MEDIA QUERIES
 */
 :root {
   --body-bg: rgb(185, 198, 201);
+  --secondary-color: rgb(255, 255, 255);
+  --transition-time: .5s;
 }
 
 body {
@@ -33,10 +35,21 @@ MENU
       -ms-flex-align: center;
           align-items: center;
   margin-top: 15%;
+  -webkit-transition: ease-in-out .25s;
+  transition: ease-in-out .25s;
 }
 
 .menu .menu-item {
   margin-top: 20px;
+  cursor: pointer;
+}
+
+.menu .menu-item:hover {
+  font-weight: bold;
+  color: var(--secondary-color);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.493);
+  -webkit-transition: ease-in-out .25s;
+  transition: ease-in-out .25s;
 }
 
 @media (min-width: 300px) and (max-width: 576px) {
@@ -49,5 +62,9 @@ MENU
   .menu .menu-item {
     margin-top: 20% !important;
   }
+}
+
+.nav-link {
+  font-weight: bold !important;
 }
 /*# sourceMappingURL=style.css.map */
