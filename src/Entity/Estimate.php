@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\EstimateRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: EstimateRepository::class)]
@@ -13,37 +15,48 @@ class Estimate
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $description;
+    #[ORM\OneToMany(mappedBy: 'estimate', targetEntity: EstimateLine::class)]
+    private $estimateLine;
 
     #[ORM\Column(type: 'date')]
     private $date;
 
-    #[ORM\Column(type: 'integer')]
-    private $quantity;
-
-    #[ORM\Column(type: 'float')]
-    private $price;
-
-    #[ORM\Column(type: 'float')]
-    private $tva;
-
-    #[ORM\Column(type: 'float')]
-    private $amount;
+    public function __construct()
+    {
+        $this->estimateLine = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getDescription(): ?string
+    /**
+     * @return Collection<int, EstimateLine>
+     */
+    public function getEstimateLine(): Collection
     {
-        return $this->description;
+        return $this->estimateLine;
     }
 
-    public function setDescription(string $description): self
+    public function addEstimateLine(EstimateLine $estimateLine): self
     {
-        $this->description = $description;
+        if (!$this->estimateLine->contains($estimateLine)) {
+            $this->estimateLine[] = $estimateLine;
+            $estimateLine->setEstimate($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEstimateLine(EstimateLine $estimateLine): self
+    {
+        if ($this->estimateLine->removeElement($estimateLine)) {
+            // set the owning side to null (unless already changed)
+            if ($estimateLine->getEstimate() === $this) {
+                $estimateLine->setEstimate(null);
+            }
+        }
 
         return $this;
     }
@@ -56,54 +69,6 @@ class Estimate
     public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
-
-        return $this;
-    }
-
-    public function getQuantity(): ?int
-    {
-        return $this->quantity;
-    }
-
-    public function setQuantity(int $quantity): self
-    {
-        $this->quantity = $quantity;
-
-        return $this;
-    }
-
-    public function getPrice(): ?float
-    {
-        return $this->price;
-    }
-
-    public function setPrice(float $price): self
-    {
-        $this->price = $price;
-
-        return $this;
-    }
-
-    public function getTva(): ?float
-    {
-        return $this->tva;
-    }
-
-    public function setTva(float $tva): self
-    {
-        $this->tva = $tva;
-
-        return $this;
-    }
-
-    public function getAmount(): ?float
-    {
-        return $this->amount;
-    }
-
-    public function setAmount(float $amount): self
-    {
-        $this->amount = $amount;
 
         return $this;
     }
