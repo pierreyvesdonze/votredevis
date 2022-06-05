@@ -18,16 +18,19 @@ MENU
     flex-direction: column;
     align-items: center;
     margin-top: 15%;
-    transition: ease-in-out .25s;
+    transition: ease-in-out .22s;
+    transform: scale(1);
     .menu-item {
         margin-top: 20px;
         cursor: pointer;
+        font-size: 1.6em;
 
         &:hover {
             font-weight: bold;
             color: var(--secondary-color);
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.493);
-            transition: ease-in-out .25s;
+            transition: ease-in-out .22s;
+            transform: scale(1.1);
         }
 
         @include xs {
