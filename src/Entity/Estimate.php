@@ -28,6 +28,10 @@ class Estimate
     #[ORM\Column(type: 'string', length: 255)]
     private $title;
 
+    #[ORM\ManyToOne(targetEntity: Customer::class, inversedBy: 'estimates')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $customer;
+
     public function __construct()
     {
         $this->estimateLine = new ArrayCollection();
@@ -100,6 +104,18 @@ class Estimate
     public function setTitle(string $title): self
     {
         $this->title = $title;
+
+        return $this;
+    }
+
+    public function getCustomer(): ?Customer
+    {
+        return $this->customer;
+    }
+
+    public function setCustomer(?Customer $customer): self
+    {
+        $this->customer = $customer;
 
         return $this;
     }

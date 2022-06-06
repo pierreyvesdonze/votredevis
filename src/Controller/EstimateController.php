@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Estimate;
 use App\Repository\EstimateRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,10 +24,11 @@ class EstimateController extends AbstractController
         ]);
     }
 
-
     #[Route('/estimate/{id}', name: 'estimate')]
-    public function show()
+    public function show(Estimate $estimate)
     {
-
+        return $this->render('estimate/show.html.twig', [
+            'estimate' => $estimate
+        ]);
     }
 }

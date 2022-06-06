@@ -6,7 +6,9 @@
 <section class="menu">
     {% for estimate in estimates %}
     <div class="menu-item">
-        {{ estimate.title }} - {{ estimate.date|date('d/m/y')}}
+        <a href="{{ path('estimate', {'id' : estimate.id }) }}">
+            {{ estimate.title }} - {{ estimate.date|date('d/m/y')}}
+        </a>
     </div>
     {% endfor %}
 </section>
