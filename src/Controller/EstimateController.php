@@ -14,10 +14,19 @@ class EstimateController extends AbstractController
         EstimateRepository $estimateRepository
     ): Response
     {
-        $estimates = $estimateRepository->findAll();
+        $estimates = $estimateRepository->findBy([
+            'user' => $this->getUser()
+        ]);
 
         return $this->render('estimate/index.html.twig', [
             'estimates' => $estimates,
         ]);
+    }
+
+
+    #[Route('/estimate/{id}', name: 'estimate')]
+    public function show()
+    {
+
     }
 }

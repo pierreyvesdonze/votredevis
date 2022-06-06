@@ -6,7 +6,7 @@
 <section class="menu">
     {% for estimate in estimates %}
     <div class="menu-item">
-        {{ estimate.date|date('d/m/yy')}}
+        {{ estimate.title }} - {{ estimate.date|date('d/m/y')}}
     </div>
     {% endfor %}
 </section>
