@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -25,6 +27,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: 'string')]
     private $password;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Estimate::class, orphanRemoval: true)]
+    private $estimates;
+
+    public function __construct()
+    {
+        $this->estimates = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -113,5 +123,35 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    /**
+     * @return Collection<int, Estimate>
+     */
+    public function getEstimates(): Collection
+    {
+        return $this->estimates;
+    }
+
+    public function addEstimate(Estimate $estimate): self
+    {
+        if (!$this->estimates->contains($estimate)) {
+            $this->estimates[] = $estimate;
+            $estimate->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEstimate(Estimate $estimate): self
+    {
+        if ($this->estimates->removeElement($estimate)) {
+            // set the owning side to null (unless already changed)
+            if ($estimate->getUser() === $this) {
+                $estimate->setUser(null);
+            }
+        }
+
+        return $this;
     }
 }

@@ -21,6 +21,13 @@ class Estimate
     #[ORM\Column(type: 'date')]
     private $date;
 
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'estimates')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $user;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $title;
+
     public function __construct()
     {
         $this->estimateLine = new ArrayCollection();
@@ -69,6 +76,30 @@ class Estimate
     public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(string $title): self
+    {
+        $this->title = $title;
 
         return $this;
     }
