@@ -5,8 +5,18 @@ MEDIA QUERIES
 */
 :root {
   --body-bg: rgb(185, 198, 201);
+  --primary-color: rgb(20, 22, 26);
   --secondary-color: rgb(255, 255, 255);
   --transition-time: .5s;
+}
+
+a {
+  text-decoration: none;
+  color: var(--primary-color);
+}
+
+a:hover {
+  color: var(--secondary-color);
 }
 
 body {
@@ -21,6 +31,7 @@ MENU
 ***********************************
 */
 .menu {
+  overflow: auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello EstimateController!{% endblock %}
+
+{% block body %}
+<section class="menu">
+    {% for estimate in estimates %}
+    <div class="menu-item">
+        {{ estimate.date|date('d/m/yy')}}
+    </div>
+    {% endfor %}
+</section>
+{% endblock %}

@@ -2,8 +2,12 @@
 
 {% block body %}
 <section class="menu">
-    <div class="menu-item">Accueil</div>
-    <div class="menu-item">Mes devis</div>
+    <div class="menu-item">
+        <a href="{{ path('home') }}">Accueil</a>
+    </div>
+    <div class="menu-item">
+        <a href="{{ path('estimates') }}">Mes devis</a>
+    </div>
     <div class="menu-item">Créer un devis</div>
     <div class="menu-item"></div>
 </section>
