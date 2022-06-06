@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20220606165752 extends AbstractMigration
+final class Version20220606170131 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,7 +20,6 @@ final class Version20220606165752 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE estimate ADD customer_id INT NOT NULL');
         $this->addSql('ALTER TABLE estimate ADD CONSTRAINT FK_D2EA46079395C3F3 FOREIGN KEY (customer_id) REFERENCES customer (id)');
         $this->addSql('CREATE INDEX IDX_D2EA46079395C3F3 ON estimate (customer_id)');
     }
@@ -30,6 +29,5 @@ final class Version20220606165752 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->addSql('ALTER TABLE estimate DROP FOREIGN KEY FK_D2EA46079395C3F3');
         $this->addSql('DROP INDEX IDX_D2EA46079395C3F3 ON estimate');
-        $this->addSql('ALTER TABLE estimate DROP customer_id');
     }
 }

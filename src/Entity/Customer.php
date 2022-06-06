@@ -15,10 +15,10 @@ class Customer
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'string', length: 60)]
+    #[ORM\Column(type: 'string', length:60, nullable: true)]
     private $lastName;
 
-    #[ORM\Column(type: 'string', length: 60)]
+    #[ORM\Column(type: 'string', length:60, nullable: true)]
     private $firstName;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
