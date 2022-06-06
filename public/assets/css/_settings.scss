@@ -7,11 +7,3 @@
     --transition-time: .5s;
 }
 
-a {
- text-decoration: none;   
- color: var(--primary-color);
- 
- &:hover {
-     color: var(--secondary-color);
- }
-}

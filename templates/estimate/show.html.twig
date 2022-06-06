@@ -2,14 +2,90 @@
 
 {% block body %}
 <section class="estimate">
-    <div class="flex-right-left">
-        <div class="flex-left">
-            <div class="logo"></div>
+    {# HEADER #}
+    <div class="row">
+        <div class="col-6">
+            <div class="logo">
+                logo
+            </div>
         </div>
-        <div class="flex-right">
-            <div class="estimate-ref"></div>
+        <div class="col-6">
+            <div class="estimate-ref">
+                <p>Devis : {{ estimate.id }}</p>
+                <p>Date : {{ estimate.date|date('d/m/y') }}</p>
+            </div>
         </div>
     </div>
-    <h1>{{ estimate.title }}</h1>
+    <br>
+    {# USER & CUSTOMER INFOS #}
+    <div class="row">
+        <div class="col-6">
+            <div class="user-infos">
+                <p>{{ app.user.companyName }}</p>
+                <p>{{ app.user.street }}</p>
+                <p>{{ app.user.postal }}</p>
+                <p>{{ app.user.town }}</p>
+                <p>Siret : {{ app.user.siret }}</p>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="customer-infos">
+                <p>{{ estimate.customer.companyName }}</p>
+                <p>{{ estimate.customer.street }}</p>
+                <p>{{ estimate.customer.postal }}</p>
+                <p>{{ estimate.customer.town }}</p>
+                <p>Siret : {{ estimate.customer.siret }}</p>
+            </div>
+        </div>
+    </div>
+
+    {# TITLE #}
+    <div class="row">
+        <div class="col-12"></div>
+        <h1 class="estimate-title">{{ estimate.title }}</h1>
+    </div>
+
+    {# ESTIMATE LINES #}
+    <table>
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Qté</th>
+                <th>Prix unitaire</th>
+                <th>TVA</th>
+                <th>Montant HT</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for line in estimate.estimateLine %}
+            <tr>
+                <td>{{ line.description }}</td>
+                <td>{{ line.quantity }}</td>
+                <td>{{ line.price }} €</td>
+                <td>{{ line.tva }}</td>
+                <td>{{ line.price * line.quantity }} €</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <th>
+    </table>
+
+    {# TOTAL LINES #}
+    <table>
+        <tr>
+            <td>Total HT</td>
+            <td>{{ totalHt|round(2, 'floor') }} €</td>
+        </tr>
+        <tr>
+            <td>Total TVA</td>
+            <td>{{ totalTva|round(2, 'floor') }} €</td>
+        </tr>
+        <tr>
+            <td>Total TTC</td>
+            <td>{{ totalTtc|round(2, 'floor') }} €</td>
+        </tr>
+    </table>
+
+
 </section>
 {% endblock %}

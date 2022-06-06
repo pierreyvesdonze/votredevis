@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Estimate;
+use App\Entity\EstimateLine;
 use App\Repository\EstimateRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,8 +28,23 @@ class EstimateController extends AbstractController
     #[Route('/estimate/{id}', name: 'estimate')]
     public function show(Estimate $estimate)
     {
+        $totalHt  = 0;
+        $totalTva = 0;
+        $totalTtc = 0;
+
+        foreach ($estimate->getEstimateLine() as $key => $estimateLine) {
+            $totalHt += $estimateLine->getPrice() * $estimateLine->getQuantity();
+            
+            $totalTva += $estimateLine->getQuantity() * $estimateLine->getPrice() * ($estimateLine->getTva() / 100);
+
+            $totalTtc += $totalHt + $totalTva;
+        }
+
         return $this->render('estimate/show.html.twig', [
-            'estimate' => $estimate
+            'estimate' => $estimate,
+            'totalHt'  => $totalHt,
+            'totalTva' => $totalTva,
+            'totalTtc' => $totalTtc
         ]);
     }
 }

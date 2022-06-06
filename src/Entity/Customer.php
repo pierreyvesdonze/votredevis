@@ -30,6 +30,9 @@ class Customer
     #[ORM\OneToMany(mappedBy: 'customer', targetEntity: Estimate::class, orphanRemoval: true)]
     private $estimates;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $siret;
+
     public function __construct()
     {
         $this->estimates = new ArrayCollection();
@@ -114,6 +117,18 @@ class Customer
                 $estimate->setCustomer(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getSiret(): ?string
+    {
+        return $this->siret;
+    }
+
+    public function setSiret(string $siret): self
+    {
+        $this->siret = $siret;
 
         return $this;
     }
