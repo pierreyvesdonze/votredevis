@@ -31,6 +31,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Estimate::class, orphanRemoval: true)]
     private $estimates;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $companyName;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $street;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $postal;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $town;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $siret;
+
     public function __construct()
     {
         $this->estimates = new ArrayCollection();
@@ -151,6 +166,66 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $estimate->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCompanyName(): ?string
+    {
+        return $this->companyName;
+    }
+
+    public function setCompanyName(string $companyName): self
+    {
+        $this->companyName = $companyName;
+
+        return $this;
+    }
+
+    public function getStreet(): ?string
+    {
+        return $this->street;
+    }
+
+    public function setStreet(string $street): self
+    {
+        $this->street = $street;
+
+        return $this;
+    }
+
+    public function getPostal(): ?string
+    {
+        return $this->postal;
+    }
+
+    public function setPostal(string $postal): self
+    {
+        $this->postal = $postal;
+
+        return $this;
+    }
+
+    public function getTown(): ?string
+    {
+        return $this->town;
+    }
+
+    public function setTown(string $town): self
+    {
+        $this->town = $town;
+
+        return $this;
+    }
+
+    public function getSiret(): ?string
+    {
+        return $this->siret;
+    }
+
+    public function setSiret(string $siret): self
+    {
+        $this->siret = $siret;
 
         return $this;
     }
