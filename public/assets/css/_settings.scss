@@ -7,3 +7,35 @@
     --transition-time: .5s;
 }
 
+body, html {
+    overflow: hidden;
+}
+
+.flex {
+    display: flex;
+}
+
+table{
+   width:100%;
+   table-layout: fixed;
+   overflow-wrap: break-word;
+}
+
+table thead,
+table tbody tr td {
+    text-align: center;
+}
+
+.hr {
+  height: 1px;
+  border: 0;
+  width: 90%;
+  margin: 20px auto;
+  background: rgb(29, 29, 29);
+  background: radial-gradient(
+    circle,
+    rgb(8, 8, 8) 0%,
+    rgba(219, 219, 219, 0.144) 50%,
+    rgba(209, 209, 209, 0) 100%
+  );
+}

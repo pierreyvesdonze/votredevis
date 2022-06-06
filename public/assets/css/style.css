@@ -10,6 +10,42 @@ MEDIA QUERIES
   --transition-time: .5s;
 }
 
+body, html {
+  overflow: hidden;
+}
+
+.flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+table {
+  width: 100%;
+  table-layout: fixed;
+  overflow-wrap: break-word;
+}
+
+table thead,
+table tbody tr td {
+  text-align: center;
+}
+
+.hr {
+  height: 1px;
+  border: 0;
+  width: 90%;
+  margin: 20px auto;
+  background: #1d1d1d;
+  background: radial-gradient(circle, #080808 0%, rgba(219, 219, 219, 0.144) 50%, rgba(209, 209, 209, 0) 100%);
+}
+
+body {
+  height: 100vh;
+  background: var(--body-bg);
+  font-family: "Montserrat", sans-serif;
+}
+
 a {
   text-decoration: none;
   color: var(--primary-color);
@@ -17,12 +53,6 @@ a {
 
 a:hover {
   color: var(--secondary-color);
-}
-
-body {
-  height: 100vh;
-  background: var(--body-bg);
-  font-family: "Montserrat", sans-serif;
 }
 
 /*
@@ -82,5 +112,41 @@ MENU
 
 .nav-link {
   font-weight: bold !important;
+}
+
+/*
+***********************************
+ESTIMATE
+***********************************
+*/
+.estimate {
+  height: 80vh;
+  overflow-y: scroll;
+  margin: 5%;
+}
+
+.estimate-price {
+  font-weight: bold;
+}
+
+/*
+***********************************
+USER INFOS
+***********************************
+*/
+@media (min-width: 300px) and (max-width: 576px) {
+  .user-infos {
+    display: none;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+  .user-infos {
+    display: none;
+  }
+}
+
+.user-infos, .customer-infos {
+  line-height: .8em;
 }
 /*# sourceMappingURL=style.css.map */

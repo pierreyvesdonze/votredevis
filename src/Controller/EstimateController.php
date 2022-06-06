@@ -16,6 +16,9 @@ class EstimateController extends AbstractController
         EstimateRepository $estimateRepository
     ): Response
     {
+        if(!$this->getUser()) {
+            return $this->redirectToRoute('login');
+        }
         $estimates = $estimateRepository->findBy([
             'user' => $this->getUser()
         ]);
@@ -28,6 +31,10 @@ class EstimateController extends AbstractController
     #[Route('/estimate/{id}', name: 'estimate')]
     public function show(Estimate $estimate)
     {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('login');
+        }
+        
         $totalHt  = 0;
         $totalTva = 0;
         $totalTtc = 0;

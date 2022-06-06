@@ -55,3 +55,35 @@ MENU
 .nav-link {
      font-weight: bold !important;
 }
+
+/*
+***********************************
+ESTIMATE
+***********************************
+*/
+.estimate {
+    height: 80vh;
+    overflow-y: scroll;
+    margin: 5%;
+}
+
+.estimate-price {
+    font-weight: bold;
+}
+
+/*
+***********************************
+USER INFOS
+***********************************
+*/
+.user-infos {
+    @include xs {
+        display: none;
+    }
+    @include sm {
+        display: none;
+    }
+}
+.user-infos, .customer-infos {
+    line-height: .8em;
+}

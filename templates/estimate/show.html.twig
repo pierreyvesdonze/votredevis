@@ -18,42 +18,42 @@
     </div>
     <br>
     {# USER & CUSTOMER INFOS #}
-    <div class="row">
-        <div class="col-6">
-            <div class="user-infos">
-                <p>{{ app.user.companyName }}</p>
-                <p>{{ app.user.street }}</p>
-                <p>{{ app.user.postal }}</p>
-                <p>{{ app.user.town }}</p>
-                <p>Siret : {{ app.user.siret }}</p>
-            </div>
+    <div class="d-flex justify-content-around">
+        <div class="user-infos">
+            <p>{{ app.user.companyName }}</p>
+            <p>{{ app.user.street }}</p>
+            <p>{{ app.user.postal }}</p>
+            <p>{{ app.user.town }}</p>
+            <p>Siret : {{ app.user.siret }}</p>
         </div>
-        <div class="col-6">
-            <div class="customer-infos">
-                <p>{{ estimate.customer.companyName }}</p>
-                <p>{{ estimate.customer.street }}</p>
-                <p>{{ estimate.customer.postal }}</p>
-                <p>{{ estimate.customer.town }}</p>
-                <p>Siret : {{ estimate.customer.siret }}</p>
-            </div>
+        <div class="customer-infos">
+            <p>{{ estimate.customer.companyName }}</p>
+            <p>{{ estimate.customer.street }}</p>
+            <p>{{ estimate.customer.postal }}</p>
+            <p>{{ estimate.customer.town }}</p>
+            <p>Siret : {{ estimate.customer.siret }}</p>
         </div>
     </div>
 
+    <hr class="hr">
+    
     {# TITLE #}
     <div class="row">
         <div class="col-12"></div>
         <h1 class="estimate-title">{{ estimate.title }}</h1>
     </div>
-
+    
+    <hr class="hr">
+    
     {# ESTIMATE LINES #}
-    <table>
+    <table class="estimate-table">
         <thead>
             <tr>
-                <th>Description</th>
+                <th>Oeuvre</th>
                 <th>Qté</th>
-                <th>Prix unitaire</th>
+                <th>P.U</th>
                 <th>TVA</th>
-                <th>Montant HT</th>
+                <th>Total HT</th>
             </tr>
         </thead>
         <tbody>
@@ -62,27 +62,29 @@
                 <td>{{ line.description }}</td>
                 <td>{{ line.quantity }}</td>
                 <td>{{ line.price }} €</td>
-                <td>{{ line.tva }}</td>
-                <td>{{ line.price * line.quantity }} €</td>
+                <td>{{ line.tva }}%</td>
+                <td class="estimate-price">{{ line.price * line.quantity }} €</td>
             </tr>
             {% endfor %}
         </tbody>
         <th>
     </table>
 
+    <hr class="hr">
+
     {# TOTAL LINES #}
-    <table>
+    <table class="estimate-table">
         <tr>
-            <td>Total HT</td>
-            <td>{{ totalHt|round(2, 'floor') }} €</td>
+            <td class="estimate-price">Total HT</td>
+            <td class="estimate-price">{{ totalHt|round(2, 'floor') }} €</td>
         </tr>
         <tr>
-            <td>Total TVA</td>
-            <td>{{ totalTva|round(2, 'floor') }} €</td>
+            <td class="estimate-price">Total TVA</td>
+            <td class="estimate-price">{{ totalTva|round(2, 'floor') }} €</td>
         </tr>
         <tr>
-            <td>Total TTC</td>
-            <td>{{ totalTtc|round(2, 'floor') }} €</td>
+            <td class="estimate-price">Total TTC</td>
+            <td class="estimate-price">{{ totalTtc|round(2, 'floor') }} €</td>
         </tr>
     </table>
 
