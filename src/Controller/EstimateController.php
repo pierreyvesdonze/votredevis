@@ -43,11 +43,12 @@ class EstimateController extends AbstractController
             return $this->redirectToRoute('login');
         }
 
+        
         $totalHt  = 0;
         $totalTva = 0;
         $totalTtc = 0;
-
-        foreach ($estimate->getEstimateLine() as $key => $estimateLine) {
+        
+        foreach ($estimate->getEstimateLine() as $estimateLine) {
             $totalHt += $estimateLine->getPrice() * $estimateLine->getQuantity();
 
             $totalTva += $estimateLine->getQuantity() * $estimateLine->getPrice() * ($estimateLine->getTva() / 100);
@@ -111,15 +112,14 @@ class EstimateController extends AbstractController
 
         $user = $this->getUser();
 
-        $estimate = new Estimate();
-        $estimate->setUser($user);
-
-        // $estimate->getEstimateLine()->add($estimateLine);
-
         $form = $this->createForm(EstimateType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $estimate = new Estimate();
+            $estimate->setUser($user);
+
             $dataEstimateLines = $form->get('estimate_line')->getData();
 
             $estimate->setDate($form->get('date')->getData());
@@ -140,10 +140,12 @@ class EstimateController extends AbstractController
                 $this->em->persist($estimateLine);
              
             }
-            $this->em->persist($estimate);          
+            $this->em->persist($estimate);    
+            dump($estimate);
             $this->em->flush();
 
-            
+            $this->addFlash('success', 'Nouveau devis créé !');
+            return $this->redirectToRoute('estimates');
         }
 
         return $this->render('estimate/create.html.twig', [
