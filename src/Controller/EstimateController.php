@@ -141,7 +141,54 @@ class EstimateController extends AbstractController
              
             }
             $this->em->persist($estimate);    
-            dump($estimate);
+            $this->em->flush();
+
+            $this->addFlash('success', 'Nouveau devis créé !');
+            return $this->redirectToRoute('estimates');
+        }
+
+        return $this->render('estimate/create.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+    #[Route('/edit/{id}', name: 'estimate_edit')]
+    public function edit(
+        Request $request,
+        Estimate $estimate
+        )
+    {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('login');
+        }
+
+        $user = $this->getUser();
+
+        $form = $this->createForm(EstimateType::class, $estimate);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $dataEstimateLines = $form->get('estimate_line')->getData();
+
+            $estimate->setDate($form->get('date')->getData());
+            $estimate->setTitle($form->get('title')->getData());
+            $estimate->setCustomer($form->get('customer')->getData());
+
+            foreach ($dataEstimateLines as $estimateLine) {
+                $newEstimateLine = new EstimateLine();
+
+                $newEstimateLine->setDescription($estimateLine->getDescription());
+                $newEstimateLine->setDate($estimateLine->getdate());
+                $newEstimateLine->setQuantity($estimateLine->getQuantity());
+                $newEstimateLine->setPrice($estimateLine->getPrice());
+                $newEstimateLine->setTva($estimateLine->getTva());
+
+                $estimate->addEstimateLine($newEstimateLine);
+
+                $this->em->persist($estimateLine);
+            }
+            $this->em->persist($estimate);
             $this->em->flush();
 
             $this->addFlash('success', 'Nouveau devis créé !');
