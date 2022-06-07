@@ -16,7 +16,9 @@
             </div>
         </div>
     </div>
+
     <br>
+
     {# USER & CUSTOMER INFOS #}
     <div class="d-flex justify-content-around">
         <div class="user-infos">
@@ -88,6 +90,11 @@
         </tr>
     </table>
 
+    <hr class="hr">
 
+    <div class="d-flex justify-content-center">
+        <a href="{{ path('estimate_download', {'id': estimate.id}) }}" id="download-pdf" class="custom-btn">Télécharger</a>
+    </div>
+        
 </section>
 {% endblock %}

@@ -1,13 +1,14 @@
 var app = {
 
-    init: function () {
+    init: () => {
 
         /**
         * *****************************
         * L I S T E N E R S
         * *****************************
         */
-    }
+        $('#download-pdf').on('click', app.downloadPdf);
+    },
 }
 
 // AppWitch Loading
