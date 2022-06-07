@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello EstimateController!{% endblock %}
+{% block title %}Devis{% endblock %}
 
 {% block body %}
 <section class="menu">
@@ -11,5 +11,7 @@
         </a>
     </div>
     {% endfor %}
+    <hr class="hr">
+    <a href="{{ path('home') }}" class="custom-btn">Retour</a>
 </section>
 {% endblock %}

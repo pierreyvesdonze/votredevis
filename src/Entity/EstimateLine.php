@@ -28,11 +28,9 @@ class EstimateLine
     #[ORM\Column(type: 'float')]
     private $tva;
 
-    #[ORM\Column(type: 'float')]
-    private $amount;
-
-    #[ORM\ManyToOne(targetEntity: Estimate::class, inversedBy: 'estimateLine')]
+    #[ORM\ManyToOne(targetEntity: Estimate::class, inversedBy: 'estimateLine', cascade: ['persist'])]
     #[ORM\JoinColumn(nullable: false)]
+
     private $estimate;
 
     public function getId(): ?int
@@ -96,18 +94,6 @@ class EstimateLine
     public function setTva(float $tva): self
     {
         $this->tva = $tva;
-
-        return $this;
-    }
-
-    public function getAmount(): ?float
-    {
-        return $this->amount;
-    }
-
-    public function setAmount(float $amount): self
-    {
-        $this->amount = $amount;
 
         return $this;
     }
