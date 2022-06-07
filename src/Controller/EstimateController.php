@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Dompdf\Dompdf;
 use Dompdf\Options;
+use Symfony\Component\HttpFoundation\Request;
 
 class EstimateController extends AbstractController
 {
@@ -77,8 +78,6 @@ class EstimateController extends AbstractController
         $pdfOptions = new Options();
         $pdfOptions->set('defaultFont', 'Arial');
         
-
-        // Instantiate Dompdf with our options
         $dompdf = new Dompdf($pdfOptions);
 
         $html = $this->renderView('estimate/download.pdf.html.twig', [
@@ -93,6 +92,18 @@ class EstimateController extends AbstractController
         $dompdf->render();
         $dompdf->stream("votredevis.pdf", [
             "Attachment" => true
+        ]);
+    }
+
+    #[Route('/estimate/create', name: 'estimate_create')]
+    public function create(Request $request)
+    {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('login');
+        }
+
+        return $this->render('estimate/create.html.twig', [
+            
         ]);
     }
 }
