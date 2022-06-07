@@ -28,8 +28,9 @@ class EstimateLine
     #[ORM\Column(type: 'float')]
     private $tva;
 
-    #[ORM\ManyToOne(targetEntity: Estimate::class, inversedBy: 'estimateLine')]
-    #[ORM\JoinColumn(nullable: false)]
+    /**
+     * @ORM\OneToMany(targetEntity=Estimate::class, inversedBy="estimateLine", cascade={"persist", "remove"})
+     */
     private $estimate;
 
     public function getId(): ?int

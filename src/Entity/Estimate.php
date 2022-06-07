@@ -15,7 +15,9 @@ class Estimate
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\OneToMany(mappedBy: 'estimate', targetEntity: EstimateLine::class)]
+    /**
+     * @ORM\OneToMany(targetEntity=EstimateLine::class, mappedBy="estimate", cascade={"persist", "remove"})
+     */
     private $estimateLine;
 
     #[ORM\Column(type: 'date')]
@@ -40,6 +42,13 @@ class Estimate
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     /**

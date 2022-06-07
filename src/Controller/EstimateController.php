@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Estimate;
+use App\Entity\EstimateLine;
+use App\Form\EstimateType;
 use App\Repository\EstimateRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -10,9 +12,14 @@ use Symfony\Component\Routing\Annotation\Route;
 use Dompdf\Dompdf;
 use Dompdf\Options;
 use Symfony\Component\HttpFoundation\Request;
+use Doctrine\ORM\EntityManagerInterface;
 
 class EstimateController extends AbstractController
 {
+    public function __construct(private EntityManagerInterface $em)
+    {
+    }
+
     #[Route('/estimates', name: 'estimates')]
     public function index(
         EstimateRepository $estimateRepository
@@ -77,7 +84,7 @@ class EstimateController extends AbstractController
 
         $pdfOptions = new Options();
         $pdfOptions->set('defaultFont', 'Arial');
-        
+
         $dompdf = new Dompdf($pdfOptions);
 
         $html = $this->renderView('estimate/download.pdf.html.twig', [
@@ -95,15 +102,52 @@ class EstimateController extends AbstractController
         ]);
     }
 
-    #[Route('/estimate/create', name: 'estimate_create')]
+    #[Route('/create', name: 'estimate_create')]
     public function create(Request $request)
     {
         if (!$this->getUser()) {
             return $this->redirectToRoute('login');
         }
 
-        return $this->render('estimate/create.html.twig', [
+        $user = $this->getUser();
+
+        $estimate = new Estimate();
+        $estimate->setUser($user);
+
+        // $estimate->getEstimateLine()->add($estimateLine);
+
+        $form = $this->createForm(EstimateType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $dataEstimateLines = $form->get('estimate_line')->getData();
+
+            $estimate->setDate($form->get('date')->getData());
+            $estimate->setTitle($form->get('title')->getData());
+            $estimate->setCustomer($form->get('customer')->getData());
+                        
+            foreach ($dataEstimateLines as $estimateLine) {
+                $newEstimateLine = new EstimateLine();
+
+                $newEstimateLine->setDescription($estimateLine->getDescription());
+                $newEstimateLine->setDate($estimateLine->getdate());
+                $newEstimateLine->setQuantity($estimateLine->getQuantity());
+                $newEstimateLine->setPrice($estimateLine->getPrice());
+                $newEstimateLine->setTva($estimateLine->getTva());
+
+                $estimate->addEstimateLine($newEstimateLine);
+
+                $this->em->persist($estimateLine);
+             
+            }
+            $this->em->persist($estimate);          
+            $this->em->flush();
+
             
+        }
+
+        return $this->render('estimate/create.html.twig', [
+            'form' => $form->createView()
         ]);
     }
 }
