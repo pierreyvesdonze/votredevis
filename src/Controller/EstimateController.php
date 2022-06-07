@@ -3,20 +3,20 @@
 namespace App\Controller;
 
 use App\Entity\Estimate;
-use App\Entity\EstimateLine;
 use App\Repository\EstimateRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 class EstimateController extends AbstractController
 {
     #[Route('/estimates', name: 'estimates')]
     public function index(
         EstimateRepository $estimateRepository
-    ): Response
-    {
-        if(!$this->getUser()) {
+    ): Response {
+        if (!$this->getUser()) {
             return $this->redirectToRoute('login');
         }
         $estimates = $estimateRepository->findBy([
@@ -34,14 +34,14 @@ class EstimateController extends AbstractController
         if (!$this->getUser()) {
             return $this->redirectToRoute('login');
         }
-        
+
         $totalHt  = 0;
         $totalTva = 0;
         $totalTtc = 0;
 
         foreach ($estimate->getEstimateLine() as $key => $estimateLine) {
             $totalHt += $estimateLine->getPrice() * $estimateLine->getQuantity();
-            
+
             $totalTva += $estimateLine->getQuantity() * $estimateLine->getPrice() * ($estimateLine->getTva() / 100);
 
             $totalTtc += $totalHt + $totalTva;
@@ -52,6 +52,47 @@ class EstimateController extends AbstractController
             'totalHt'  => $totalHt,
             'totalTva' => $totalTva,
             'totalTtc' => $totalTtc
+        ]);
+    }
+
+    #[Route('/estimate/download/{id}', name: 'estimate_download')]
+    public function download(Estimate $estimate)
+    {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('login');
+        }
+
+        $totalHt  = 0;
+        $totalTva = 0;
+        $totalTtc = 0;
+
+        foreach ($estimate->getEstimateLine() as $key => $estimateLine) {
+            $totalHt += $estimateLine->getPrice() * $estimateLine->getQuantity();
+
+            $totalTva += $estimateLine->getQuantity() * $estimateLine->getPrice() * ($estimateLine->getTva() / 100);
+
+            $totalTtc += $totalHt + $totalTva;
+        }
+
+        $pdfOptions = new Options();
+        $pdfOptions->set('defaultFont', 'Arial');
+        
+
+        // Instantiate Dompdf with our options
+        $dompdf = new Dompdf($pdfOptions);
+
+        $html = $this->renderView('estimate/download.pdf.html.twig', [
+            'estimate' => $estimate,
+            'totalHt'  => $totalHt,
+            'totalTva' => $totalTva,
+            'totalTtc' => $totalTtc
+        ]);
+
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+        $dompdf->stream("votredevis.pdf", [
+            "Attachment" => true
         ]);
     }
 }

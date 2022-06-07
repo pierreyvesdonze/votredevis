@@ -7,10 +7,11 @@ MEDIA QUERIES
   --body-bg: rgb(185, 198, 201);
   --primary-color: rgb(20, 22, 26);
   --secondary-color: rgb(255, 255, 255);
-  --transition-time: .5s;
+  --transition-time: 0.5s;
 }
 
-body, html {
+body,
+html {
   overflow: hidden;
 }
 
@@ -38,6 +39,18 @@ table tbody tr td {
   margin: 20px auto;
   background: #1d1d1d;
   background: radial-gradient(circle, #080808 0%, rgba(219, 219, 219, 0.144) 50%, rgba(209, 209, 209, 0) 100%);
+}
+
+/*
+***********************************
+CUSTOM BTN
+***********************************
+*/
+.custom-btn {
+  font-weight: bold;
+  border: 1px solid #5a5a5a;
+  border-radius: 15px;
+  padding: 0.5em;
 }
 
 body {
@@ -122,6 +135,7 @@ ESTIMATE
 .estimate {
   height: 80vh;
   overflow-y: scroll;
+  overflow-x: hidden;
   margin: 5%;
 }
 
