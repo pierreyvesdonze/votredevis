@@ -99,7 +99,7 @@ class EstimateController extends AbstractController
         $dompdf->loadHtml($html);
         $dompdf->setPaper('A4', 'portrait');
         $dompdf->render();
-        $dompdf->stream("votredevis.pdf", [
+        $dompdf->stream("Devis-".$estimate->getTitle().".pdf", [
             "Attachment" => true
         ]);
     }
