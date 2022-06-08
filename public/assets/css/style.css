@@ -55,6 +55,7 @@ CUSTOM BTN
 ***********************************
 */
 .custom-btn {
+  display: inline-block;
   font-weight: bold;
   border: 1px solid #5a5a5a;
   border-radius: 15px;
@@ -102,7 +103,8 @@ MENU
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin-top: 15%;
+  height: 80vh;
+  overflow-y: auto;
   -webkit-transition: ease-in-out 0.22s;
   transition: ease-in-out 0.22s;
 }
@@ -133,10 +135,6 @@ MENU
   }
 }
 
-#menu-item-title:hover {
-  color: var(--secondary-color);
-}
-
 .nav-link {
   font-weight: bold !important;
 }
@@ -146,11 +144,38 @@ MENU
 ESTIMATE
 ***********************************
 */
-.estimate {
+.estimates-section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   height: 80vh;
+  overflow: auto;
+}
+
+.estimate {
+  height: 65vh;
   overflow-y: scroll;
   overflow-x: hidden;
   margin: 5%;
+}
+
+@media (min-width: 300px) and (max-width: 576px) {
+  .estimate {
+    height: 78vh;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+  .estimate {
+    height: 78vh;
+  }
 }
 
 .estimate-price {
@@ -169,8 +194,7 @@ label {
   width: 380px;
 }
 
-.create-estimate {
-  height: 100vh;
+.edit-estimate {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -186,47 +210,51 @@ label {
           align-items: center;
 }
 
-.create-estimate-content {
+.edit-estimate-content {
   height: 80vh;
   overflow-y: scroll;
   border-radius: 10px;
 }
 
 @media (min-width: 1280px) {
-  .create-estimate-content {
+  .edit-estimate-content {
     border: solid var(--form-bg);
     padding: 3em;
   }
 }
 
 @media (min-width: 992px) and (max-width: 1280px) {
-  .create-estimate-content {
+  .edit-estimate-content {
     border: solid var(--form-bg);
     padding: 3em;
   }
 }
 
 @media (min-width: 768px) and (max-width: 992px) {
-  .create-estimate-content {
+  .edit-estimate-content {
     border: solid var(--form-bg);
     padding: 3em;
   }
 }
 
 @media (min-width: 300px) and (max-width: 576px) {
-  .create-estimate-content {
+  .edit-estimate-content {
     padding: 2em;
   }
 }
 
 @media (min-width: 576px) and (max-width: 768px) {
-  .create-estimate-content {
+  .edit-estimate-content {
     padding: 2em;
   }
 }
 
 .tags {
   margin: 20px;
+}
+
+.add-estimate-line-btn {
+  display: table-cell;
 }
 
 /*
@@ -249,5 +277,15 @@ USER INFOS
 .user-infos,
 .customer-infos {
   line-height: 0.8em;
+}
+
+/*
+***********************************
+BOOTSTRAP
+***********************************
+*/
+.card {
+  background-color: var(--form-bg) !important;
+  margin-bottom: 2em;
 }
 /*# sourceMappingURL=style.css.map */

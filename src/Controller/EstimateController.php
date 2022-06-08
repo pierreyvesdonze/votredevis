@@ -44,7 +44,6 @@ class EstimateController extends AbstractController
         if (!$this->getUser()) {
             return $this->redirectToRoute('login');
         }
-
         
         $totalHt  = 0;
         $totalTva = 0;

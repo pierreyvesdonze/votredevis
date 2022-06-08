@@ -6,6 +6,7 @@ document
 
 const addTagLink = document.createElement('a')
 addTagLink.classList.add('custom-btn')
+addTagLink.classList.add('add-estimate-line-btn')
 addTagLink.href = '#'
 addTagLink.innerText = 'Ajouter une ligne'
 addTagLink.dataset.collectionHolderClass = 'tags'

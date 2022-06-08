@@ -3,8 +3,8 @@
 {% block title %}Créer un devis{% endblock %}
 
 {% block body %}
-<section class="create-estimate">
-    <div class="create-estimate-content">
+<section class="edit-estimate">
+    <div class="edit-estimate-content">
         {# Delete FORM #}
         <h3>Devis : {{ estimate.title }}</h3>
         <div class="select-estimate-line" data-estimate="{{ estimate.id }}">
@@ -23,11 +23,15 @@
 
         {# update FORM #}
         {% include('estimate/_form.html.twig') %}
-
-        <br>
-
-        <a href="{{ path('estimates') }}" class="custom-btn">Retour</a>
     </div>
+</section>
+
+<section class="footer">
+<div class="d-flex justify-content-around">
+    <a href="{{ path('home') }}" class="custom-btn">
+        <img src="{{ asset('assets/icons/return.png') }}">
+    </a>
+</div>
 </section>
 
 <script src="{{ asset('assets/js/estimate.js') }}"></script>

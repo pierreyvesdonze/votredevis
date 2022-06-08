@@ -28,7 +28,8 @@ MENU
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    margin-top: 15%;
+    height: 80vh;
+    overflow-y: auto;
     transition: ease-in-out 0.22s;
     .menu-item {
         margin-top: 20px;
@@ -51,12 +52,6 @@ MENU
     }
 }
 
-#menu-item-title {
-    &:hover {
-        color: var(--secondary-color);
-    }
-}
-
 .nav-link {
     font-weight: bold !important;
 }
@@ -66,11 +61,25 @@ MENU
 ESTIMATE
 ***********************************
 */
-.estimate {
+.estimates-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     height: 80vh;
+    overflow: auto;
+}
+
+.estimate {
+    height: 65vh;
     overflow-y: scroll;
     overflow-x: hidden;
     margin: 5%;
+    @include xs {
+        height: 78vh;
+    }
+    @include sm {
+        height: 78vh;
+    }
 }
 
 .estimate-price {
@@ -89,15 +98,14 @@ label {
     width: 380px;
 }
 
-.create-estimate {
-    height: 100vh;
+.edit-estimate {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.create-estimate-content {
+.edit-estimate-content {
     height: 80vh;
     overflow-y: scroll;
     border-radius: 10px;
@@ -126,6 +134,10 @@ label {
     margin: 20px;
 }
 
+.add-estimate-line-btn {
+    display: table-cell;
+}
+
 /*
 ***********************************
 USER INFOS
@@ -142,4 +154,15 @@ USER INFOS
 .user-infos,
 .customer-infos {
     line-height: 0.8em;
+}
+
+
+/*
+***********************************
+BOOTSTRAP
+***********************************
+*/
+.card {
+    background-color: var(--form-bg) !important;
+    margin-bottom: 2em;
 }
