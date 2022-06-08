@@ -71,7 +71,10 @@ ESTIMATE
 .estimate-price {
     font-weight: bold;
 }
-
+.create-estimate {
+    height: 100vh;
+    overflow-y: scroll;
+}
 /*
 ***********************************
 USER INFOS
