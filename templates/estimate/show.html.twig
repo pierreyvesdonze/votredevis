@@ -95,6 +95,8 @@
     <div class="d-flex justify-content-center">
         <a href="{{ path('estimates') }}" class="custom-btn">Retour</a>
         <a href="{{ path('estimate_download', {'id': estimate.id}) }}" id="download-pdf" class="custom-btn">Télécharger</a>
+        <a href="{{ path('estimate_edit', {"id": estimate.id}) }}" class="custom-btn">Modifier</a>
+        <a href="{{ path('estimate_delete', {'id' : estimate.id}) }}" onclick="return confirm('Supprimer ce devis ?')" class="custom-btn">Supprimer</a>
     </div>
         
 </section>

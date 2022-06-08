@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Estimate;
 use App\Entity\EstimateLine;
+use App\Form\EstimateLineDeleteType;
 use App\Form\EstimateType;
+use App\Repository\EstimateLineRepository;
 use App\Repository\EstimateRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -104,21 +106,23 @@ class EstimateController extends AbstractController
     }
 
     #[Route('/create', name: 'estimate_create')]
-    public function create(Request $request)
+    public function create(
+        Request $request
+        )
     {
         if (!$this->getUser()) {
             return $this->redirectToRoute('login');
         }
 
         $user = $this->getUser();
-
+ 
         $form = $this->createForm(EstimateType::class);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        $estimate = new Estimate();
+        $estimate->setUser($user);
 
-            $estimate = new Estimate();
-            $estimate->setUser($user);
+        if ($form->isSubmitted() && $form->isValid()) {        
 
             $dataEstimateLines = $form->get('estimate_line')->getData();
 
@@ -141,7 +145,6 @@ class EstimateController extends AbstractController
              
             }
             $this->em->persist($estimate);    
-            dump($estimate);
             $this->em->flush();
 
             $this->addFlash('success', 'Nouveau devis créé !');
@@ -149,7 +152,65 @@ class EstimateController extends AbstractController
         }
 
         return $this->render('estimate/create.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'estimate' => $estimate
         ]);
+    }
+
+    #[Route('/edit/{id}', name: 'estimate_edit')]
+    public function edit(
+        Request $request,
+        Estimate $estimate
+        )
+    {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('login');
+        }
+
+        $form = $this->createForm(EstimateType::class, $estimate);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $estimateLines = $estimate->getEstimateLine();
+
+            $estimate->setDate($form->get('date')->getData());
+            $estimate->setTitle($form->get('title')->getData());
+            $estimate->setCustomer($form->get('customer')->getData());
+
+            foreach ($estimateLines as $estimateLine) {
+
+                $estimateLine->setDescription($estimateLine->getDescription());
+                $estimateLine->setDate($estimateLine->getdate());
+                $estimateLine->setQuantity($estimateLine->getQuantity());
+                $estimateLine->setPrice($estimateLine->getPrice());
+                $estimateLine->setTva($estimateLine->getTva());
+
+                $estimate->addEstimateLine($estimateLine);
+            }
+
+            $this->em->persist($estimate);
+            $this->em->flush();
+
+            $this->addFlash('success', 'Devis mis à jour !');
+            return $this->redirectToRoute('estimate_edit', [
+                'id' => $estimate->getId()
+            ]);
+        }
+
+        return $this->render('estimate/edit.html.twig', [
+            'form' => $form->createView(),
+            'estimate' => $estimate
+        ]);
+    }
+
+    #[Route('/delete/{id}', name: 'estimate_delete')]
+    public function delete(Estimate $estimate)
+    {
+        $this->em->remove($estimate);
+        $this->em->flush();
+        $this->addFlash('success', 'Le devis a bien été supprimé');
+
+        return $this->redirectToRoute('estimates');
     }
 }

@@ -5,7 +5,19 @@
 {% block body %}
 <section class="create-estimate">
 
-    <h3>Créer un nouveau devis</h3>
+    <h3>Devis : {{ estimate.title }}</h3>
+    <div class="select-estimate-line" data-estimate="{{ estimate.id }}">
+        <form method="post">
+            <select id="estimate-line-delete-form">
+                <option value="0">--Sélectionnez une ligne</option>
+                {% for estimateLine in estimate.estimateLine %}
+                <option value="{{ estimateLine.id }}" data-id="{{ estimateLine.id }}">{{ estimateLine.description }}
+                </option>
+                {% endfor %}
+            </select>
+            <button class="custom-btn" id="estimate-line-form-delete-submit" type="submit">Supprimer une ligne</button>
+        </form>
+    </div>
 
     {{ form_start(form) }}
     {{ form_row(form.date) }}
@@ -14,7 +26,7 @@
 
     <ul class="tags" data-index="{{ form.estimate_line|length > 0 ? form.estimate_line|last.vars.name + 1 : 0 }}"
         data-prototype="{{ form_widget(form.estimate_line.vars.prototype)|e('html_attr') }}"></ul>
-        
+
     {{ form_end(form) }}
 
     <hr class="hr">
