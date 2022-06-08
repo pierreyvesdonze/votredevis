@@ -1,7 +1,7 @@
 :root {
   //var(--body-bg): url("../images/texture.webp") no-repeat fixed;
   //var(--body-bg)-small: url("../images/texture-small.webp") no-repeat fixed;
-  --body-bg: rgb(185, 198, 201);
+  --body-bg: #e0e0e0;
   --primary-color: rgb(20, 22, 26);
   --secondary-color: rgb(255, 255, 255);
   --transition-time: 0.5s;
@@ -27,6 +27,13 @@ table tbody tr td {
   text-align: center;
 }
 
+input, textarea {
+  border-radius: 14px;
+  padding: .4em;
+  outline: none;
+  border: none;
+}
+
 .hr {
   height: 1px;
   border: 0;
@@ -46,4 +53,8 @@ CUSTOM BTN
   border: 1px solid #5a5a5a;
   border-radius: 15px;
   padding: 0.5em;
+  background-color: transparent;
+  &:hover {
+    background-color: var(--secondary-color);
+  }
 }

@@ -11,7 +11,7 @@
     {% block stylesheets %}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;1,400&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;1,400&display=swap"
         rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
@@ -33,6 +33,9 @@
 </head>
 
 <body>
+    {# NAV #}
+    {% include("nav/nav.html.twig") %}
+
     {# Flash messages #}
     <div class="flash-container">
         {% for label, messages in app.flashes %}
@@ -43,8 +46,6 @@
         {% endfor %}
         {% endfor %}
     </div>
-    {# NAV #}
-    {% include("nav/nav.html.twig") %}
 
     {% block body %}{% endblock %}
 </body>

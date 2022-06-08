@@ -41,9 +41,10 @@ class EstimateType extends AbstractType
                 'allow_add' => true,
                 'allow_delete' => true,
                 'by_reference' => false,
+                'label' => false,
                 'attr' => [
                     'placeholder' => 'Ajouter une ligne',
-                    'class' => 'estimateLineTest'
+                    'class' => 'estimate-line-line'
                 ]
             ])
             ->add('submit', SubmitType::class, [
