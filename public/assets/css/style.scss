@@ -30,7 +30,6 @@ MENU
     align-items: center;
     margin-top: 15%;
     transition: ease-in-out 0.22s;
-    transform: scale(1);
     .menu-item {
         margin-top: 20px;
         cursor: pointer;
@@ -41,7 +40,6 @@ MENU
             color: var(--secondary-color);
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.493);
             transition: ease-in-out 0.22s;
-            transform: scale(1.1);
         }
 
         @include xs {
@@ -50,6 +48,12 @@ MENU
         @include sm {
             margin-top: 20% !important;
         }
+    }
+}
+
+#menu-item-title {
+    &:hover {
+        color: var(--secondary-color);
     }
 }
 
@@ -96,18 +100,18 @@ label {
 .create-estimate-content {
     height: 80vh;
     overflow-y: scroll;
-    margin-top: 2em;
     border-radius: 10px;
+    //background-color: var(--form-bg);
     @include xl {
-        box-shadow: inset 0px 0px 4px 1px rgba(0, 0, 0, 0.75);
+        border: solid var(--form-bg);
         padding: 3em;
     }
     @include lg {
-        box-shadow: inset 0px 0px 4px 1px rgba(0, 0, 0, 0.75);
+        border: solid var(--form-bg);
         padding: 3em;
     }
     @include md {
-        box-shadow: inset 0px 0px 4px 1px rgba(0, 0, 0, 0.75);
+        border: solid var(--form-bg);
         padding: 3em;
     }
     @include xs {

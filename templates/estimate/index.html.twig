@@ -6,11 +6,11 @@
 <section class="menu">
     {% for estimate in estimates %}
     <div class="menu-item">
-        <a href="{{ path('estimate', {'id' : estimate.id }) }}">
+        <a href="{{ path('estimate', {'id' : estimate.id }) }}" id="menu-item-title">
             {{ estimate.title }} - {{ estimate.date|date('d/m/y')}}
         </a>
-        <a href="{{ path('estimate_edit', {"id": estimate.id}) }}">Modifier</a>
-        <a href="{{ path('estimate_delete', {'id': estimate.id}) }}" onclick="return confirm('Supprimer ce devis ?')">Supprimer</a>
+        <a href="{{ path('estimate_edit', {"id": estimate.id}) }}" class="custom-btn">Modifier</a>
+        <a href="{{ path('estimate_delete', {'id': estimate.id}) }}" onclick="return confirm('Supprimer ce devis ?')" class="custom-btn">Supprimer</a>
     </div>
     {% endfor %}
     <hr class="hr">

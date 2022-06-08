@@ -5,6 +5,7 @@ MEDIA QUERIES
 */
 :root {
   --body-bg: #e0e0e0;
+  --form-bg: #c2c9d0;
   --primary-color: rgb(20, 22, 26);
   --secondary-color: rgb(255, 255, 255);
   --transition-time: 0.5s;
@@ -104,8 +105,6 @@ MENU
   margin-top: 15%;
   -webkit-transition: ease-in-out 0.22s;
   transition: ease-in-out 0.22s;
-  -webkit-transform: scale(1);
-          transform: scale(1);
 }
 
 .menu .menu-item {
@@ -120,8 +119,6 @@ MENU
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.493);
   -webkit-transition: ease-in-out 0.22s;
   transition: ease-in-out 0.22s;
-  -webkit-transform: scale(1.1);
-          transform: scale(1.1);
 }
 
 @media (min-width: 300px) and (max-width: 576px) {
@@ -134,6 +131,10 @@ MENU
   .menu .menu-item {
     margin-top: 20% !important;
   }
+}
+
+#menu-item-title:hover {
+  color: var(--secondary-color);
 }
 
 .nav-link {
@@ -188,30 +189,26 @@ label {
 .create-estimate-content {
   height: 80vh;
   overflow-y: scroll;
-  margin-top: 2em;
   border-radius: 10px;
 }
 
 @media (min-width: 1280px) {
   .create-estimate-content {
-    -webkit-box-shadow: inset 0px 0px 4px 1px rgba(0, 0, 0, 0.75);
-            box-shadow: inset 0px 0px 4px 1px rgba(0, 0, 0, 0.75);
+    border: solid var(--form-bg);
     padding: 3em;
   }
 }
 
 @media (min-width: 992px) and (max-width: 1280px) {
   .create-estimate-content {
-    -webkit-box-shadow: inset 0px 0px 4px 1px rgba(0, 0, 0, 0.75);
-            box-shadow: inset 0px 0px 4px 1px rgba(0, 0, 0, 0.75);
+    border: solid var(--form-bg);
     padding: 3em;
   }
 }
 
 @media (min-width: 768px) and (max-width: 992px) {
   .create-estimate-content {
-    -webkit-box-shadow: inset 0px 0px 4px 1px rgba(0, 0, 0, 0.75);
-            box-shadow: inset 0px 0px 4px 1px rgba(0, 0, 0, 0.75);
+    border: solid var(--form-bg);
     padding: 3em;
   }
 }
