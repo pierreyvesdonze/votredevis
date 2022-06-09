@@ -29,7 +29,7 @@ class EstimateController extends AbstractController
         if (!$this->getUser()) {
             return $this->redirectToRoute('login');
         }
-        $estimates = $estimateRepository->findBy([
+        $estimates = $estimateRepository->findByIdDesc([
             'user' => $this->getUser()
         ]);
 
@@ -206,6 +206,10 @@ class EstimateController extends AbstractController
     #[Route('/delete/{id}', name: 'estimate_delete')]
     public function delete(Estimate $estimate)
     {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('login');
+        }
+
         $this->em->remove($estimate);
         $this->em->flush();
         $this->addFlash('success', 'Le devis a bien été supprimé');

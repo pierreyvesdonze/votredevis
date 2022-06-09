@@ -19,6 +19,15 @@ a {
 
 /*
 ***********************************
+LOGO
+***********************************
+*/
+.logo img {
+    width: 88px;
+}
+
+/*
+***********************************
 MENU
 ***********************************
 */
@@ -54,6 +63,16 @@ MENU
 
 .nav-link {
     font-weight: bold !important;
+}
+
+.large-nav {
+    margin: 0 250px;
+    @include xs {
+        margin: 0;
+    }
+    @include sm {
+        margin: 0;
+    }
 }
 
 /*

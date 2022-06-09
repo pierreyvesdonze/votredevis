@@ -85,6 +85,15 @@ a:hover {
 
 /*
 ***********************************
+LOGO
+***********************************
+*/
+.logo img {
+  width: 88px;
+}
+
+/*
+***********************************
 MENU
 ***********************************
 */
@@ -137,6 +146,22 @@ MENU
 
 .nav-link {
   font-weight: bold !important;
+}
+
+.large-nav {
+  margin: 0 250px;
+}
+
+@media (min-width: 300px) and (max-width: 576px) {
+  .large-nav {
+    margin: 0;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+  .large-nav {
+    margin: 0;
+  }
 }
 
 /*
