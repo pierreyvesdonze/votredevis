@@ -4,7 +4,7 @@
 
 {% block body %}
 <section class="edit-estimate">
-    <div class="edit-estimate-content">
+    <div class="main-border-content">
         {# Delete FORM #}
         <h3>Devis : {{ estimate.title }}</h3>
         <div class="select-estimate-line" data-estimate="{{ estimate.id }}">
@@ -27,8 +27,11 @@
 </section>
 
 <section class="footer-nav">
-<div class="d-flex justify-content-around">
-    <a href="{{ path('home') }}" class="custom-btn">
+<div class="d-flex justify-content-center">
+    <a href="{{ path('estimates') }}" class="custom-btn">
+        <img src="{{ asset('assets/icons/list.png') }}">
+    </a>
+    <a href="{{ path('estimate', {'id': estimate.id}) }}" class="custom-btn">
         <img src="{{ asset('assets/icons/return.png') }}">
     </a>
 </div>

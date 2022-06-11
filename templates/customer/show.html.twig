@@ -1,46 +1,50 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Customer{% endblock %}
+{% block title %}Client - {{ customer.companyName }}{% endblock %}
 
 {% block body %}
 <div class="flex-center-section">
-    <div class="main-row">
+    <div class="main-border-content">
+        <div class="main-row">
 
-        <h1>
-            {{ customer.companyName }}
-        </h1>
+            <h1>
+                {{ customer.companyName }}
+            </h1>
 
-        <div>
-            Id : {{ customer.id }}
+            <div>
+                Id : {{ customer.id }}
+            </div>
+            <br>
+            <div>
+                Siret : {{ customer.siret }}
+            </div>
+            <br>
+            <div>
+                {{ customer.street }}
+            </div>
+            <br>
+            <div>
+                {{ customer.postal }}
+            </div>
+            <br>
+            <div>
+                {{ customer.town }}
+            </div>
+            <br>
         </div>
-        <br>
-        <div>
-            Siret : {{ customer.siret }}
-        </div>
-        <br>
-        <div>
-            {{ customer.street }}
-        </div>
-        <br>
-        <div>
-            {{ customer.postal }}
-        </div>
-        <br>
-        <div>
-            {{ customer.town }}
-        </div>
-        <br>
-
-    </div>
-
-    <div class="main-control">
-        <a href="{{ path('customer_edit', {'id': customer.id}) }}" class="custom-btn">Modifier</a>
-        {{ include('customer/_delete_form.html.twig') }}
     </div>
 
     <section class="footer-nav">
         <hr class="hr">
-        <a href="{{ path('customer_index') }}" class="custom-btn">Retour</a>
+        <div class="d-flex justify-content-around large-nav">
+            <a href="{{ path('customer_edit', {'id': customer.id}) }}" class="custom-btn">
+                <img src="{{ asset('assets/icons/edit.png') }}">
+            </a>
+            <a href="{{ path('customer_index') }}" class="custom-btn">
+                <img src="{{ asset('assets/icons/return.png') }}">
+            </a>
+            {{ include('customer/_delete_form.html.twig') }}
+        </div>
     </section>
 </div>
 {% endblock %}

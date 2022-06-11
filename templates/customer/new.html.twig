@@ -6,10 +6,16 @@
 <div class="flex-center-section">
     <h1>Créer un nouveau client</h1>
 
-    {{ include('customer/_form.html.twig') }}
-
+    <div class="main-border-content">
+        {{ include('customer/_form.html.twig') }}
+    </div>
     <section class="footer-nav">
-        <a href="{{ path('customer_index') }}" class="custom-btn">Retour</a>
+        <br>
+        <div class="d-flex justify-content-center">
+            <a href="{{ path('customer_index') }}" class="custom-btn">
+                <img src="{{ asset('assets/icons/return.png') }}">
+            </a>
+        </div>
     </section>
 </div>
 {% endblock %}

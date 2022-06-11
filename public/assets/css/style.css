@@ -189,6 +189,30 @@ FLEX
 ESTIMATE
 ***********************************
 */
+/*FILTER*/
+.filter-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.filter-form-flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.filter-form-flex div {
+  margin-right: 30px;
+}
+
 .flex-center-section {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -255,41 +279,41 @@ label {
           align-items: center;
 }
 
-.edit-estimate-content {
+.main-border-content {
   height: 80vh;
   overflow-y: scroll;
   border-radius: 10px;
 }
 
 @media (min-width: 1280px) {
-  .edit-estimate-content {
+  .main-border-content {
     border: solid var(--form-bg);
     padding: 3em;
   }
 }
 
 @media (min-width: 992px) and (max-width: 1280px) {
-  .edit-estimate-content {
+  .main-border-content {
     border: solid var(--form-bg);
     padding: 3em;
   }
 }
 
 @media (min-width: 768px) and (max-width: 992px) {
-  .edit-estimate-content {
+  .main-border-content {
     border: solid var(--form-bg);
     padding: 3em;
   }
 }
 
 @media (min-width: 300px) and (max-width: 576px) {
-  .edit-estimate-content {
+  .main-border-content {
     padding: 2em;
   }
 }
 
 @media (min-width: 576px) and (max-width: 768px) {
-  .edit-estimate-content {
+  .main-border-content {
     padding: 2em;
   }
 }

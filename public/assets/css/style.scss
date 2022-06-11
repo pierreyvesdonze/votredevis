@@ -92,6 +92,20 @@ FLEX
 ESTIMATE
 ***********************************
 */
+
+/*FILTER*/
+.filter-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.filter-form-flex {
+    display: flex;
+    div {
+        margin-right: 30px;
+    }
+}
+
 .flex-center-section {
     display: flex;
     flex-direction: column;
@@ -136,7 +150,7 @@ label {
     align-items: center;
 }
 
-.edit-estimate-content {
+.main-border-content {
     height: 80vh;
     overflow-y: scroll;
     border-radius: 10px;
