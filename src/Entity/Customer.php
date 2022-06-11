@@ -33,6 +33,10 @@ class Customer
     #[ORM\Column(type: 'string', length: 255)]
     private $siret;
 
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'customers')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $user;
+
     public function __construct()
     {
         $this->estimates = new ArrayCollection();
@@ -129,6 +133,18 @@ class Customer
     public function setSiret(string $siret): self
     {
         $this->siret = $siret;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

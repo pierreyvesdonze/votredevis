@@ -2,8 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Estimate;
-use App\Entity\EstimateLine;
 use App\Repository\EstimateLineRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

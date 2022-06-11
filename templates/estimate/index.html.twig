@@ -3,17 +3,58 @@
 {% block title %}Devis{% endblock %}
 
 {% block body %}
-<section class="menu">
-    {% for estimate in estimates %}
-    <div class="menu-item">
-        <a href="{{ path('estimate', {'id' : estimate.id }) }}">
-            {{ estimate.title }} - {{ estimate.date|date('d/m/y')}}
-        </a>
-        <a href="{{ path('estimate_edit', {"id": estimate.id}) }}">Modifier</a>
-        <a href="{{ path('estimate_delete', {'id': estimate.id}) }}" onclick="return confirm('Supprimer ce devis ?')">Supprimer</a>
+<section class="flex-center-section">
+
+    <h1>Mes devis</h1>
+
+    <br>
+
+    {# SEARCH #}
+    {% include('search/_search.html.twig') %}
+
+    <br>
+
+    {# FILTER #}
+    {% include('filter/_filterform.html.twig') %}
+
+    <br>
+    <div class="main-border-content">
+        {% for estimate in estimates %}
+        <div class="main-row">
+            <div class="row">
+                <h5>
+                    {{ estimate.title }} - {{ estimate.date|date('d/m/y')}}
+                </h5>
+            </div>
+
+            <div class="main-control">
+                <div>
+                    <a href="{{ path('estimate', {'id' : estimate.id }) }}" class="custom-btn">Voir
+                    </a>
+                </div>
+                <div>
+                    <a href="{{ path('estimate_edit', {'id': estimate.id}) }}" class="custom-btn">Modifier</a>
+                </div>
+                <div>
+                    <a href="{{ path('estimate_delete', {'id': estimate.id}) }}"
+                        onclick="return confirm('Supprimer ce devis ?')" class="custom-btn">Supprimer</a>
+                </div>
+            </div>
+
+            <br>
+
+        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
-    <hr class="hr">
-    <a href="{{ path('home') }}" class="custom-btn">Retour</a>
+</section>
+
+<hr class="hr">
+
+<section class="footer-nav">
+    <div class="d-flex justify-content-around">
+        <a href="{{ path('home') }}" class="custom-btn">
+            <img src="{{ asset('assets/icons/return.png') }}">
+        </a>
+    </div>
 </section>
 {% endblock %}

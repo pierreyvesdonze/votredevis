@@ -3,90 +3,40 @@
 {% block title %}Créer un devis{% endblock %}
 
 {% block body %}
-<section class="create-estimate">
+<section class="edit-estimate">
+    <div class="main-border-content">
+        {# Delete FORM #}
+        <h3>Devis : {{ estimate.title }}</h3>
+        <div class="select-estimate-line" data-estimate="{{ estimate.id }}">
+            <form method="post">
+                <select id="estimate-line-delete-form">
+                    <option value="0">--Sélectionnez une ligne</option>
+                    {% for estimateLine in estimate.estimateLine %}
+                    <option value="{{ estimateLine.id }}" data-id="{{ estimateLine.id }}">{{ estimateLine.description }}
+                    </option>
+                    {% endfor %}
+                </select>
+                <button class="custom-btn" id="estimate-line-form-delete-submit" type="submit">Supprimer une
+                    ligne</button>
+            </form>
+        </div>
 
-    <h3>Devis : {{ estimate.title }}</h3>
-    <div class="select-estimate-line" data-estimate="{{ estimate.id }}">
-        <form method="post">
-            <select id="estimate-line-delete-form">
-                <option value="0">--Sélectionnez une ligne</option>
-                {% for estimateLine in estimate.estimateLine %}
-                <option value="{{ estimateLine.id }}" data-id="{{ estimateLine.id }}">{{ estimateLine.description }}
-                </option>
-                {% endfor %}
-            </select>
-            <button class="custom-btn" id="estimate-line-form-delete-submit" type="submit">Supprimer une ligne</button>
-        </form>
+        {# update FORM #}
+        {% include('estimate/_form.html.twig') %}
     </div>
-
-    {{ form_start(form) }}
-    {{ form_row(form.date) }}
-    {{ form_row(form.title) }}
-    {{ form_row(form.customer) }}
-
-    <ul class="tags" data-index="{{ form.estimate_line|length > 0 ? form.estimate_line|last.vars.name + 1 : 0 }}"
-        data-prototype="{{ form_widget(form.estimate_line.vars.prototype)|e('html_attr') }}"></ul>
-
-    {{ form_end(form) }}
-
-    <hr class="hr">
-    <a href="{{ path('estimates') }}" class="custom-btn">Retour</a>
 </section>
 
-<script>
+<section class="footer-nav">
+<div class="d-flex justify-content-center">
+    <a href="{{ path('estimates') }}" class="custom-btn">
+        <img src="{{ asset('assets/icons/list.png') }}">
+    </a>
+    <a href="{{ path('estimate', {'id': estimate.id}) }}" class="custom-btn">
+        <img src="{{ asset('assets/icons/return.png') }}">
+    </a>
+</div>
+</section>
 
-    document
-        .querySelectorAll('ul.tags li')
-        .forEach((tag) => {
-            addTagFormDeleteLink(tag)
-        })
-
-    const addTagLink = document.createElement('a')
-    addTagLink.classList.add('custom-btn')
-    addTagLink.href = '#'
-    addTagLink.innerText = 'Ajouter une ligne'
-    addTagLink.dataset.collectionHolderClass = 'tags'
-
-    const newLinkLi = document.createElement('li').append(addTagLink)
-
-    const collectionHolder = document.querySelector('ul.tags')
-    collectionHolder.appendChild(addTagLink)
-
-    const addFormToCollection = (e) => {
-        const collectionHolder = document.querySelector('.' + e.currentTarget.dataset.collectionHolderClass);
-
-        const item = document.createElement('li');
-
-        item.innerHTML = collectionHolder
-            .dataset
-            .prototype
-            .replace(
-                /__name__/g,
-                collectionHolder.dataset.index
-            );
-
-        collectionHolder.appendChild(item);
-
-        collectionHolder.dataset.index++;
-
-        addTagFormDeleteLink(item);
-    }
-
-    const addTagFormDeleteLink = (item) => {
-        const removeFormButton = document.createElement('button');
-        removeFormButton.innerText = 'Supprimer cette ligne';
-        removeFormButton.classList.add('custom-btn');
-
-        item.append(removeFormButton);
-
-        removeFormButton.addEventListener('click', (e) => {
-            e.preventDefault();
-            // remove the li for the tag form
-            item.remove();
-        });
-    }
-
-    addTagLink.addEventListener("click", addFormToCollection)
-</script>
+<script src="{{ asset('assets/js/estimate.js') }}"></script>
 
 {% endblock %}

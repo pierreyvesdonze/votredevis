@@ -6,15 +6,13 @@
 </head>
 
 <body>
-
-
     <section class="estimate">
         {# HEADER #}
-        <div class="row" <div class="col-6">
+        {# <div class="row" <div class="col-6">
             <div class="logo">
-                logo
+                <img src="../../../public/assets/logo.png">
             </div>
-        </div>
+        </div> #}
         <div class="col-6">
             <div class="estimate-ref">
                 <p>Devis : {{ estimate.id }}</p>
@@ -67,21 +65,21 @@
         <table class="estimate-table">
             <thead>
                 <tr>
-                    <th>Oeuvre</th>
-                    <th>Qté</th>
-                    <th>P.U</th>
-                    <th>TVA</th>
-                    <th>Total HT</th>
+                    <th style="width:140px;">Oeuvre</th>
+                    <th style="width:140px;">Qté</th>
+                    <th style="width:140px;">P.U</th>
+                    <th style="width:140px;">TVA</th>
+                    <th style="width:140px;">Total HT</th>
                 </tr>
             </thead>
             <tbody>
                 {% for line in estimate.estimateLine %}
                 <tr>
-                    <td>{{ line.description }}</td>
-                    <td>{{ line.quantity }}</td>
-                    <td>{{ line.price }} €</td>
-                    <td>{{ line.tva }}%</td>
-                    <td class="estimate-price">{{ line.price * line.quantity }} €</td>
+                    <td style="width:140px; text-align:center;">{{ line.description }}</td>
+                    <td style="width:140px; text-align:center;">{{ line.quantity }}</td>
+                    <td style="width:140px; text-align:center;">{{ line.price }} €</td>
+                    <td style="width:140px; text-align:center;">{{ line.tva }}%</td>
+                    <td style="width:140px; text-align:center;" class="estimate-price">{{ line.price * line.quantity }} €</td>
                 </tr>
                 {% endfor %}
             </tbody>

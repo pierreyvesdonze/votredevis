@@ -5,15 +5,25 @@ body {
     height: 100vh;
     background: var(--body-bg);
     font-family: "Montserrat", sans-serif;
+    font-weight: 200;
 }
 
 a {
- text-decoration: none;   
- color: var(--primary-color);
- 
- &:hover {
-     color: var(--secondary-color);
- }
+    text-decoration: none;
+    color: var(--primary-color);
+
+    &:hover {
+        color: var(--primary-color);
+    }
+}
+
+/*
+***********************************
+LOGO
+***********************************
+*/
+.logo img {
+    width: 88px;
 }
 
 /*
@@ -27,9 +37,9 @@ MENU
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    margin-top: 15%;
-    transition: ease-in-out .22s;
-    transform: scale(1);
+    height: 80vh;
+    overflow-y: auto;
+    transition: ease-in-out 0.22s;
     .menu-item {
         margin-top: 20px;
         cursor: pointer;
@@ -39,8 +49,7 @@ MENU
             font-weight: bold;
             color: var(--secondary-color);
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.493);
-            transition: ease-in-out .22s;
-            transform: scale(1.1);
+            transition: ease-in-out 0.22s;
         }
 
         @include xs {
@@ -53,7 +62,29 @@ MENU
 }
 
 .nav-link {
-     font-weight: bold !important;
+    font-weight: bold !important;
+}
+
+.large-nav {
+    margin: 0 250px;
+    @include xs {
+        margin: 0;
+    }
+    @include sm {
+        margin: 0;
+    }
+}
+/*
+***********************************
+FLEX
+***********************************
+*/
+.flex-center-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 80vh;
+    overflow: auto;
 }
 
 /*
@@ -61,20 +92,98 @@ MENU
 ESTIMATE
 ***********************************
 */
-.estimate {
+
+/*FILTER*/
+.filter-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.filter-form-flex {
+    display: flex;
+    div {
+        margin-right: 30px;
+    }
+}
+
+.flex-center-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     height: 80vh;
+    overflow: auto;
+}
+
+.estimate {
+    height: 65vh;
     overflow-y: scroll;
     overflow-x: hidden;
     margin: 5%;
+    @include xs {
+        height: 78vh;
+    }
+    @include sm {
+        height: 78vh;
+    }
 }
 
 .estimate-price {
     font-weight: bold;
 }
-.create-estimate {
-    height: 100vh;
-    overflow-y: scroll;
+
+label {
+    width: 100%;
 }
+
+.estimate-tva {
+    margin-bottom: 2em;
+}
+
+.estimate-line-line textarea {
+    width: 380px;
+}
+
+.edit-estimate {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-border-content {
+    height: 80vh;
+    overflow-y: scroll;
+    border-radius: 10px;
+    //background-color: var(--form-bg);
+    @include xl {
+        border: solid var(--form-bg);
+        padding: 3em;
+    }
+    @include lg {
+        border: solid var(--form-bg);
+        padding: 3em;
+    }
+    @include md {
+        border: solid var(--form-bg);
+        padding: 3em;
+    }
+    @include xs {
+        padding: 2em;
+    }
+    @include sm {
+        padding: 2em;
+    }
+}
+
+.tags {
+    margin: 20px;
+}
+
+.add-estimate-line-btn {
+    display: table-cell;
+}
+
+
 /*
 ***********************************
 USER INFOS
@@ -88,6 +197,32 @@ USER INFOS
         display: none;
     }
 }
-.user-infos, .customer-infos {
-    line-height: .8em;
+.user-infos,
+.customer-infos {
+    line-height: 0.8em;
+}
+
+/*
+***********************************
+SEARCH & CONTROL
+***********************************
+*/
+.main-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center
+}
+
+.main-control {
+    display: flex;
+}
+
+/*
+***********************************
+BOOTSTRAP
+***********************************
+*/
+.card {
+    background-color: var(--form-bg) !important;
+    margin-bottom: 2em;
 }

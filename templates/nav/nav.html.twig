@@ -7,7 +7,26 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-link active" aria-current="page" href="{{ path('home') }}">Accueil</a>
-                <a class="nav-link" href="#">Features</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownEstimate" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Devis
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownEstimate">
+                        <li><a class="dropdown-item" href="{{ path('estimates') }}">Voir</a></li>
+                        <li><a class="dropdown-item" href="{{ path('estimate_create') }}">Créer</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownCustomer" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Clients
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownCustomer">
+                        <li><a class="dropdown-item" href="{{ path('customer_index') }}">Voir</a></li>
+                        <li><a class="dropdown-item" href="{{ path('customer_new') }}">Créer</a></li>
+                    </ul>
+                </li>
                 {% if app.user %}
                 <a class="nav-link" href="{{ path('logout') }}">Déconnexion</a>
                 {% else %}

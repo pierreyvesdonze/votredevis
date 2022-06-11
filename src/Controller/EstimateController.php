@@ -4,9 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Estimate;
 use App\Entity\EstimateLine;
-use App\Form\EstimateLineDeleteType;
+use App\Form\EstimateFilterType;
 use App\Form\EstimateType;
-use App\Repository\EstimateLineRepository;
 use App\Repository\EstimateRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,16 +23,34 @@ class EstimateController extends AbstractController
 
     #[Route('/estimates', name: 'estimates')]
     public function index(
-        EstimateRepository $estimateRepository
+        EstimateRepository $estimateRepository,
+        Request $request
     ): Response {
+
         if (!$this->getUser()) {
             return $this->redirectToRoute('login');
         }
-        $estimates = $estimateRepository->findBy([
-            'user' => $this->getUser()
-        ]);
+
+        $user = $this->getUser();
+
+        $form = $this->createForm(EstimateFilterType::class);
+        $form->handleRequest($request);
+
+        $estimates = $estimateRepository->findByDateDesc($user);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $filterData = $form->get('type')->getData();
+
+            if ('1' == $filterData) {
+                $estimates = $estimateRepository->findByDateDesc($user);
+            } elseif ('2' == $filterData) {
+                $estimates = $estimateRepository->findByDateAsc($user);
+            }
+        }
+
 
         return $this->render('estimate/index.html.twig', [
+            'form' => $form->createView(),
             'estimates' => $estimates,
         ]);
     }
@@ -44,7 +61,6 @@ class EstimateController extends AbstractController
         if (!$this->getUser()) {
             return $this->redirectToRoute('login');
         }
-
         
         $totalHt  = 0;
         $totalTva = 0;
@@ -86,7 +102,7 @@ class EstimateController extends AbstractController
         }
 
         $pdfOptions = new Options();
-        $pdfOptions->set('defaultFont', 'Arial');
+        $pdfOptions->set(['defaultFont', 'Arial', 'isRemoteEnabled' => true]);
 
         $dompdf = new Dompdf($pdfOptions);
 
@@ -100,7 +116,7 @@ class EstimateController extends AbstractController
         $dompdf->loadHtml($html);
         $dompdf->setPaper('A4', 'portrait');
         $dompdf->render();
-        $dompdf->stream("votredevis.pdf", [
+        $dompdf->stream("Devis-".$estimate->getTitle().".pdf", [
             "Attachment" => true
         ]);
     }
@@ -207,6 +223,10 @@ class EstimateController extends AbstractController
     #[Route('/delete/{id}', name: 'estimate_delete')]
     public function delete(Estimate $estimate)
     {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('login');
+        }
+
         $this->em->remove($estimate);
         $this->em->flush();
         $this->addFlash('success', 'Le devis a bien été supprimé');

@@ -3,78 +3,25 @@
 {% block title %}Créer un devis{% endblock %}
 
 {% block body %}
-<section class="create-estimate">
+<section class="flex-center-section">
 
-    <h3>Créer un nouveau devis</h3>
-
-    {{ form_start(form) }}
-    {{ form_row(form.date) }}
-    {{ form_row(form.title) }}
-    {{ form_row(form.customer) }}
-
-    <ul class="tags" data-index="{{ form.estimate_line|length > 0 ? form.estimate_line|last.vars.name + 1 : 0 }}"
-        data-prototype="{{ form_widget(form.estimate_line.vars.prototype)|e('html_attr') }}"></ul>
+    <div>
+        <h3>Créer un nouveau devis</h3>
         
-    {{ form_end(form) }}
-
-    <hr class="hr">
-    <a href="{{ path('estimates') }}" class="custom-btn">Retour</a>
+        {# Update FORM #}
+        {% include('estimate/_form.html.twig') %}
+    </div>
+    
 </section>
 
-<script>
+<section class="footer-nav">
+    <hr class="hr">
+    <div class="d-flex justify-content-around">
+        <a href="{{ path('home') }}" class="custom-btn">
+            <img src="{{ asset('assets/icons/return.png') }}">
+        </a>
+    </div>
+</section>
 
-    document
-        .querySelectorAll('ul.tags li')
-        .forEach((tag) => {
-            addTagFormDeleteLink(tag)
-        })
-
-    const addTagLink = document.createElement('a')
-    addTagLink.classList.add('custom-btn')
-    addTagLink.href = '#'
-    addTagLink.innerText = 'Ajouter une ligne'
-    addTagLink.dataset.collectionHolderClass = 'tags'
-
-    const newLinkLi = document.createElement('li').append(addTagLink)
-
-    const collectionHolder = document.querySelector('ul.tags')
-    collectionHolder.appendChild(addTagLink)
-
-    const addFormToCollection = (e) => {
-        const collectionHolder = document.querySelector('.' + e.currentTarget.dataset.collectionHolderClass);
-
-        const item = document.createElement('li');
-
-        item.innerHTML = collectionHolder
-            .dataset
-            .prototype
-            .replace(
-                /__name__/g,
-                collectionHolder.dataset.index
-            );
-
-        collectionHolder.appendChild(item);
-
-        collectionHolder.dataset.index++;
-
-        addTagFormDeleteLink(item);
-    }
-
-    const addTagFormDeleteLink = (item) => {
-        const removeFormButton = document.createElement('button');
-        removeFormButton.innerText = 'Supprimer cette ligne';
-        removeFormButton.classList.add('custom-btn');
-
-        item.append(removeFormButton);
-
-        removeFormButton.addEventListener('click', (e) => {
-            e.preventDefault();
-            // remove the li for the tag form
-            item.remove();
-        });
-    }
-
-    addTagLink.addEventListener("click", addFormToCollection)
-</script>
-
+<script src="{{ asset('assets/js/estimate.js') }}"></script>
 {% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier le client{% endblock %}
+
+{% block body %}
+<div class="flex-center-section">
+
+    <h1>Modifier le client</h1>
+    
+    {{ include('customer/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+    <section class="footer-nav">
+        <div class="d-flex justify-content-center">
+            <a href="{{ path('customer_index') }}" class="custom-btn">
+                <img src="{{ asset('assets/icons/list.png') }}">
+            </a>
+            <a href="{{ path('customer_show', {'id': customer.id}) }}" class="custom-btn">
+                <img src="{{ asset('assets/icons/return.png') }}">
+            </a>
+        </div>
+    </section>
+</div>
+{% endblock %}

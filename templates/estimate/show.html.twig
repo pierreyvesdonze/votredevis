@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-6">
             <div class="logo">
-                logo
+                <img src="{{ asset('assets/logo.png') }}">
             </div>
         </div>
         <div class="col-6">
@@ -38,15 +38,15 @@
     </div>
 
     <hr class="hr">
-    
+
     {# TITLE #}
     <div class="row">
         <div class="col-12"></div>
         <h1 class="estimate-title">{{ estimate.title }}</h1>
     </div>
-    
+
     <hr class="hr">
-    
+
     {# ESTIMATE LINES #}
     <table class="estimate-table">
         <thead>
@@ -92,12 +92,27 @@
 
     <hr class="hr">
 
-    <div class="d-flex justify-content-center">
-        <a href="{{ path('estimates') }}" class="custom-btn">Retour</a>
-        <a href="{{ path('estimate_download', {'id': estimate.id}) }}" id="download-pdf" class="custom-btn">Télécharger</a>
-        <a href="{{ path('estimate_edit', {"id": estimate.id}) }}" class="custom-btn">Modifier</a>
-        <a href="{{ path('estimate_delete', {'id' : estimate.id}) }}" onclick="return confirm('Supprimer ce devis ?')" class="custom-btn">Supprimer</a>
-    </div>
-        
+    </section>
+
+    <section class="footer-nav">
+        <div class="d-flex justify-content-around large-nav">
+            <a href="{{ path('estimates') }}" class="custom-btn">
+                <img src="{{ asset('assets/icons/return.png') }}">
+            </a>
+            <a href="{{ path('estimate_download', {'id': estimate.id}) }}" id="download-pdf"
+                class="custom-btn">
+            <img src="{{ asset('assets/icons/download.png') }}">
+            </a>
+            <a href="{{ path('estimate_edit', {"id": estimate.id}) }}" class="custom-btn">
+                <img src="{{ asset('assets/icons/edit.png') }}">
+            </a>
+            <a href="{{ path('estimate_delete', {'id' : estimate.id}) }}"
+                onclick="return confirm('Supprimer ce devis ?')" class="custom-btn">
+                <img src="{{ asset('assets/icons/delete.png') }}">
+            </a>
+        </div>
+    </section>
+
+
 </section>
 {% endblock %}

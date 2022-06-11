@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Clients{% endblock %}
+
+{% block body %}
+<div class="flex-center-section">
+    <h1>Clients</h1>
+    <br>
+    {# SEARCH #}
+    {% include('search/_search.html.twig') %}
+
+    <br>
+
+    {# FILTER #}
+    {% include('filter/_filterform.html.twig') %}
+        
+    <br>
+    <div class="main-border-content">
+        {% for customer in customers %}
+        <div class="main-row ">
+            <h3>{{ customer.companyName }}</h3>
+            <div class="main-control">
+                <div>
+                    <a href="{{ path('customer_show', {'id': customer.id}) }}" class="custom-btn">
+                        <img src="{{ asset('assets/icons/show.png') }}">
+                    </a>
+                </div>
+                <div>
+                    <a href="{{ path('customer_edit', {'id': customer.id}) }}" class="custom-btn">
+                        <img src="{{ asset('assets/icons/edit.png') }}">
+                    </a>
+                </div>
+                <div>
+                    {{ include('customer/_delete_form.html.twig') }}
+                </div>
+            </div>
+        </div>
+
+        <br>
+        {% else %}
+        <div>
+            Aucun client trouvé
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<br>
+<div class="footer-nav">
+    <div class="d-flex justify-content-center
+    ">
+        <a href="{{ path('customer_new') }}" class="custom-btn">Créer un client</a>
+    </div>
+</div>
+{% endblock %}
