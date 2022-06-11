@@ -11,31 +11,49 @@
 
     {# SEARCH #}
     {% include('estimate/_search.html.twig') %}
-    
+
     <br>
-    
+
     {# FILTER #}
     {% include('estimate/_filterform.html.twig') %}
-    
+
     <hr class="hr">
 
     {% for estimate in estimates %}
-    <h5>
-        {{ estimate.title }} - {{ estimate.date|date('d/m/y')}}
-    </h5>
+    <div class="estimate-row">
+        <div class="row">
+            <h5>
+                {{ estimate.title }} - {{ estimate.date|date('d/m/y')}}
+            </h5>
+        </div>
 
-    <div class="row">
-        <div class="col-4">
-            <a href="{{ path('estimate', {'id' : estimate.id }) }}" class="custom-btn">Voir
-            </a>
+        <div class="estimate-control">
+            <div>
+                <a href="{{ path('estimate', {'id' : estimate.id }) }}" class="custom-btn">Voir
+                </a>
+            </div>
+            <div>
+                <a href="{{ path('estimate_edit', {'id': estimate.id}) }}" class="custom-btn">Modifier</a>
+            </div>
+            <div>
+                <a href="{{ path('estimate_delete', {'id': estimate.id}) }}" onclick="return confirm('Supprimer ce devis ?')"
+                    class="custom-btn">Supprimer</a>
+            </div>
         </div>
-        <div class="col-4">
-            <a href="{{ path('estimate_edit', {'id': estimate.id}) }}" class="custom-btn">Modifier</a>
-        </div>
-        <div class="col-4">
-            <a href="{{ path('estimate_delete', {'id': estimate.id}) }}"
-                onclick="return confirm('Supprimer ce devis ?')" class="custom-btn">Supprimer</a>
-        </div>
+
+        {# <div class="row">
+            <div class="col-4">
+                <a href="{{ path('estimate', {'id' : estimate.id }) }}" class="custom-btn">Voir
+                </a>
+            </div>
+            <div class="col-4">
+                <a href="{{ path('estimate_edit', {'id': estimate.id}) }}" class="custom-btn">Modifier</a>
+            </div>
+            <div class="col-4">
+                <a href="{{ path('estimate_delete', {'id': estimate.id}) }}"
+                    onclick="return confirm('Supprimer ce devis ?')" class="custom-btn">Supprimer</a>
+            </div>
+        </div> #}
     </div>
     {% endfor %}
 </section>

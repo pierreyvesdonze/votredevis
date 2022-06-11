@@ -157,6 +157,15 @@ label {
     display: table-cell;
 }
 
+.estimate-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center
+}
+.estimate-control {
+    display: flex;
+}
+
 /*
 ***********************************
 USER INFOS
