@@ -37,7 +37,7 @@ class EstimateController extends AbstractController
         $form->handleRequest($request);
 
         $estimates = $estimateRepository->findByDateDesc($user);
-        
+
         if ($form->isSubmitted() && $form->isValid()) {
             $filterData = $form->get('type')->getData();
 

@@ -166,10 +166,30 @@ MENU
 
 /*
 ***********************************
+FLEX
+***********************************
+*/
+.flex-center-section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 80vh;
+  overflow: auto;
+}
+
+/*
+***********************************
 ESTIMATE
 ***********************************
 */
-.estimates-section {
+.flex-center-section {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -282,25 +302,6 @@ label {
   display: table-cell;
 }
 
-.estimate-row {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.estimate-control {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
 /*
 ***********************************
 USER INFOS
@@ -321,6 +322,30 @@ USER INFOS
 .user-infos,
 .customer-infos {
   line-height: 0.8em;
+}
+
+/*
+***********************************
+SEARCH & CONTROL
+***********************************
+*/
+.main-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.main-control {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 /*

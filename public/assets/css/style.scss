@@ -74,13 +74,25 @@ MENU
         margin: 0;
     }
 }
+/*
+***********************************
+FLEX
+***********************************
+*/
+.flex-center-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 80vh;
+    overflow: auto;
+}
 
 /*
 ***********************************
 ESTIMATE
 ***********************************
 */
-.estimates-section {
+.flex-center-section {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -157,14 +169,6 @@ label {
     display: table-cell;
 }
 
-.estimate-row {
-    display: flex;
-    flex-direction: column;
-    align-items: center
-}
-.estimate-control {
-    display: flex;
-}
 
 /*
 ***********************************
@@ -184,6 +188,20 @@ USER INFOS
     line-height: 0.8em;
 }
 
+/*
+***********************************
+SEARCH & CONTROL
+***********************************
+*/
+.main-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center
+}
+
+.main-control {
+    display: flex;
+}
 
 /*
 ***********************************

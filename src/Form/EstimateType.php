@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Customer;
 use App\Entity\Estimate;
+use App\Repository\CustomerRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -12,24 +13,42 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class EstimateType extends AbstractType
 {
+    private $token;
+
+    public function __construct(TokenStorageInterface $token)
+    {
+        $this->token = $token;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $user = $this->token->getToken()->getUser();
         $builder
             ->add('date', DateType::class, [
+                'label' => 'Date',
                 'attr' => [
                     'placeholder' => 'Date'
                 ]
             ])
             ->add('title', TextType::class, [
+                'label' => 'Titre',
                 'attr' => [
                     'placeholder' => 'Titre'
                 ]
             ])
             ->add('customer', EntityType::class, [
+                'label' => 'Client',
                 'class' => Customer::class,
+                'query_builder' => function(CustomerRepository $customerRepository) use ($user) {
+                    return $customerRepository->createQueryBuilder('c')
+                        ->where('c.user = :uid')
+                        ->setParameter('uid', $user)
+                        ->orderBy('c.companyName', 'ASC');
+                },
                 'choice_label' => 'company_name',
                 'attr' => [
                     'placeholder' => 'Date'
@@ -58,7 +77,7 @@ class EstimateType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Estimate::class,
+            'data_class' => Estimate::class
         ]);
     }
 }

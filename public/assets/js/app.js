@@ -14,15 +14,15 @@ var app = {
         evt.preventDefault();
         
         let userInput = document.querySelector('.search-input').value;
-        let estimateRow = document.querySelectorAll('.estimate-row');
+        let mainRow = document.querySelectorAll('.main-row');
         let filter = userInput.toLowerCase();
 
-        for (i = 0; i < estimateRow.length; i++) {
-            if (!estimateRow[i].innerHTML.toLowerCase().includes(filter)) {
-                estimateRow[i].style.display = "none";
+        for (i = 0; i < mainRow.length; i++) {
+            if (!mainRow[i].innerHTML.toLowerCase().includes(filter)) {
+                mainRow[i].style.display = "none";
             }
             else {
-                estimateRow[i].style.display = "";
+                mainRow[i].style.display = "";
             }
         }
     }

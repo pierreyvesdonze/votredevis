@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau client{% endblock %}
+
+{% block body %}
+<div class="flex-center-section">
+    <h1>Créer un nouveau client</h1>
+
+    {{ include('customer/_form.html.twig') }}
+
+    <section class="footer-nav">
+        <a href="{{ path('customer_index') }}" class="custom-btn">Retour</a>
+    </section>
+</div>
+{% endblock %}

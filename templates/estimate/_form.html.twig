@@ -1,13 +1,15 @@
 {{ form_start(form) }}
+{{ form_label(form.customer) }}
+{{ form_widget(form.customer) }}
+<a href="{{ path('customer_new') }}" class="custom-btn">Créer un client</a>
+<br>
 {{ form_label(form.date) }}
 <br>
 {{ form_widget(form.date) }}
 {{ form_label(form.title) }}
 <br>
 {{ form_widget(form.title) }}
-{{ form_label(form.customer) }}
 <br>
-{{ form_widget(form.customer) }}
 
 <ul class="tags" data-index="{{ form.estimate_line|length > 0 ? form.estimate_line|last.vars.name + 1 : 0 }}"
     data-prototype="{{ form_widget(form.estimate_line.vars.prototype)|e('html_attr') }}"></ul>
