@@ -7,17 +7,15 @@
 
     <h1>Mes devis</h1>
 
-    <hr class="hr">
+    <br>
+
+    {# SEARCH #}
+    {% include('estimate/_search.html.twig') %}
     
-    {# FILTERS #}
-    <div class="filter-form">
-        <h2>Trier</h2>
-        {{form_start(form)}}
-        {{form_row(form.type)}}
-        <br>
-        {{form_row(form.submit)}}
-        {{form_end(form)}}
-    </div>
+    <br>
+    
+    {# FILTER #}
+    {% include('estimate/_filterform.html.twig') %}
     
     <hr class="hr">
 
