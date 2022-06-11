@@ -8,6 +8,12 @@
     <br>
     {# SEARCH #}
     {% include('search/_search.html.twig') %}
+
+    <br>
+
+    {# FILTER #}
+    {% include('filter/_filterform.html.twig') %}
+        
     <br>
     <div class="main-border-content">
         {% for customer in customers %}

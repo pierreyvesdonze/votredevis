@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Customer;
+use App\Form\CustomerFilterType;
 use App\Form\CustomerType;
 use App\Repository\CustomerRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -13,17 +14,40 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/customer')]
 class CustomerController extends AbstractController
 {
-    #[Route('/', name: 'customer_index', methods: ['GET'])]
-    public function index(CustomerRepository $customerRepository): Response
+    #[Route('/', name: 'customer_index', methods: ['POST'])]
+    public function index(
+        CustomerRepository $customerRepository,
+        Request $request
+        ): Response
     {
         if (!$this->getUser()) {
             return $this->redirectToRoute('login');
         }
 
+        $user = $this->getUser();
+
+        $form = $this->createForm(CustomerFilterType::class);
+        $form->handleRequest($request);
+
+        $customers = $customerRepository->findByIdDesc($user);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $filterData = $form->get('type')->getData();
+
+            if ('1' == $filterData) {
+                $customers = $customerRepository->findByIdDesc($user);
+            } elseif ('2' == $filterData) {
+                $customers = $customerRepository->findByIdAsc($user);
+            } elseif ('3' == $filterData) { 
+                $customers = $customerRepository->findByNameAsc($user);
+            } elseif ('4' == $filterData) {
+                $customers = $customerRepository->findByNameDesc($user);
+            }
+        }
+
         return $this->render('customer/index.html.twig', [
-            'customers' => $customerRepository->findBy([
-                'user' => $this->getUser()
-            ]),
+            'customers' => $customers,
+            'form' => $form->createView()
         ]);
     }
 

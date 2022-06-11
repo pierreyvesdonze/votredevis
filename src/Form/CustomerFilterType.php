@@ -8,7 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class EstimateFilterType extends AbstractType
+class CustomerFilterType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -19,7 +19,9 @@ class EstimateFilterType extends AbstractType
                 [
                     'choices' => [
                         'Plus récents' => 1,
-                        'Plus anciens' => 2
+                        'Plus anciens' => 2,
+                        'A-Z' => 3,
+                        'Z-A' => 4
                     ],
                     'attr' => [
                         'class' => 'input-field col s4'
@@ -38,11 +40,4 @@ class EstimateFilterType extends AbstractType
                 ]
             );
     }
-
-    // public function configureOptions(OptionsResolver $resolver)
-    // {
-    //     $resolver->setDefaults([
-    //         'data_class' => Estimate::class,
-    //     ]);
-    // }
 }

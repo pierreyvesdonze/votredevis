@@ -46,7 +46,6 @@ class EstimateController extends AbstractController
             } elseif ('2' == $filterData) {
                 $estimates = $estimateRepository->findByDateAsc($user);
             }
-
         }
 
 
