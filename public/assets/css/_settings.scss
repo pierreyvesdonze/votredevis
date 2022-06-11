@@ -53,9 +53,13 @@ CUSTOM BTN
   display: inline-block;
   font-weight: bold;
   border: 1px solid #5a5a5a;
+  margin: 0 10px;
   border-radius: 15px;
   padding: 0.5em;
   background-color: transparent;
+  img {
+    width: 30px;
+  }
   &:hover {
     background-color: var(--secondary-color);
   }
