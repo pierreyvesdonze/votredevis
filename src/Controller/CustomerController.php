@@ -14,7 +14,9 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/customer')]
 class CustomerController extends AbstractController
 {
-    #[Route('/', name: 'customer_index', methods: ['POST'])]
+    /**
+     * @Route("/", name="customer_index", methods={"GET","POST"})
+     */
     public function index(
         CustomerRepository $customerRepository,
         Request $request
