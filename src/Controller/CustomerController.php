@@ -16,8 +16,14 @@ class CustomerController extends AbstractController
     #[Route('/', name: 'customer_index', methods: ['GET'])]
     public function index(CustomerRepository $customerRepository): Response
     {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('login');
+        }
+
         return $this->render('customer/index.html.twig', [
-            'customers' => $customerRepository->findAll(),
+            'customers' => $customerRepository->findBy([
+                'user' => $this->getUser()
+            ]),
         ]);
     }
 
@@ -50,6 +56,10 @@ class CustomerController extends AbstractController
     #[Route('/{id}', name: 'customer_show', methods: ['GET'])]
     public function show(Customer $customer): Response
     {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('login');
+        }
+
         return $this->render('customer/show.html.twig', [
             'customer' => $customer,
         ]);
@@ -58,6 +68,10 @@ class CustomerController extends AbstractController
     #[Route('/{id}/edit', name: 'customer_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Customer $customer, CustomerRepository $customerRepository): Response
     {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('login');
+        }
+
         $form = $this->createForm(CustomerType::class, $customer);
         $form->handleRequest($request);
 
@@ -76,7 +90,11 @@ class CustomerController extends AbstractController
     #[Route('/{id}', name: 'customer_delete', methods: ['POST'])]
     public function delete(Request $request, Customer $customer, CustomerRepository $customerRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$customer->getId(), $request->request->get('_token'))) {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('login');
+        }
+
+        if ($this->isCsrfTokenValid('delete' . $customer->getId(), $request->request->get('_token'))) {
             $customerRepository->remove($customer, true);
         }
 
