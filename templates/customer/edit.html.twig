@@ -4,11 +4,11 @@
 
 {% block body %}
 <div class="flex-center-section">
+    <div class="main-border-content">
+        <h1>Modifier le client</h1>
 
-    <h1>Modifier le client</h1>
-    
-    {{ include('customer/_form.html.twig', {'button_label': 'Modifier'}) }}
-
+        {{ include('customer/_form.html.twig', {'button_label': 'Modifier'}) }}
+    </div>
     <section class="footer-nav">
         <div class="d-flex justify-content-center">
             <a href="{{ path('customer_index') }}" class="custom-btn">
