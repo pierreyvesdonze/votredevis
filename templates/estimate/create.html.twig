@@ -4,18 +4,19 @@
 
 {% block body %}
 <section class="flex-center-section">
+    <div class="main-border-content">
 
-    <div>
-        <h3>Créer un nouveau devis</h3>
-        
-        {# Update FORM #}
-        {% include('estimate/_form.html.twig') %}
+        <div>
+            <h3>Créer un nouveau devis</h3>
+            
+            {# Update FORM #}
+            {% include('estimate/_form.html.twig') %}
+        </div>
     </div>
     
 </section>
 
 <section class="footer-nav">
-    <hr class="hr">
     <div class="d-flex justify-content-around">
         <a href="{{ path('home') }}" class="custom-btn">
             <img src="{{ asset('assets/icons/return.png') }}">

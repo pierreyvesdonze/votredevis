@@ -29,15 +29,21 @@
 
             <div class="main-control">
                 <div>
-                    <a href="{{ path('estimate', {'id' : estimate.id }) }}" class="custom-btn">Voir
+                    <a href="{{ path('estimate', {'id' : estimate.id }) }}" class="custom-btn">
+                        <img src="{{ asset('assets/icons/show.png') }}">
                     </a>
                 </div>
                 <div>
-                    <a href="{{ path('estimate_edit', {'id': estimate.id}) }}" class="custom-btn">Modifier</a>
+                    <a href="{{ path('estimate_edit', {'id': estimate.id}) }}" class="custom-btn">
+                        <img src="{{ asset('assets/icons/edit.png') }}">
+                    </a>
                 </div>
                 <div>
                     <a href="{{ path('estimate_delete', {'id': estimate.id}) }}"
-                        onclick="return confirm('Supprimer ce devis ?')" class="custom-btn">Supprimer</a>
+                        onclick="return confirm('Supprimer ce devis ?')" 
+                        class="custom-btn">
+                        <img src="{{ asset('assets/icons/delete.png') }}">
+                    </a>
                 </div>
             </div>
 
@@ -47,8 +53,6 @@
         {% endfor %}
     </div>
 </section>
-
-<hr class="hr">
 
 <section class="footer-nav">
     <div class="d-flex justify-content-around">
