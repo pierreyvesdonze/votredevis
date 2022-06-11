@@ -42,15 +42,27 @@ class EstimateRepository extends ServiceEntityRepository
     /**
      * @return Estimate[] Returns an array of Estimate objects
      */
-    public function findByIdDesc($value): array
+    public function findByDateDesc($value): array
     {
         return $this->createQueryBuilder('e')
             ->andWhere('e.user = :val')
             ->setParameter('val', $value)
             ->orderBy('e.date', 'DESC')
-            ->setMaxResults(10)
             ->getQuery()
             ->getResult()
         ;
+    }
+
+    /**
+     * @return Estimate[] Returns an array of Estimate objects
+     */
+    public function findByDateAsc($value): array
+    {
+        return $this->createQueryBuilder('e')
+            ->andWhere('e.user = :val')
+            ->setParameter('val', $value)
+            ->orderBy('e.date', 'ASC')
+            ->getQuery()
+            ->getResult();
     }
 }

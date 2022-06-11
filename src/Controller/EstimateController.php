@@ -4,9 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Estimate;
 use App\Entity\EstimateLine;
-use App\Form\EstimateLineDeleteType;
+use App\Form\EstimateFilterType;
 use App\Form\EstimateType;
-use App\Repository\EstimateLineRepository;
 use App\Repository\EstimateRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,16 +23,35 @@ class EstimateController extends AbstractController
 
     #[Route('/estimates', name: 'estimates')]
     public function index(
-        EstimateRepository $estimateRepository
+        EstimateRepository $estimateRepository,
+        Request $request
     ): Response {
+
         if (!$this->getUser()) {
             return $this->redirectToRoute('login');
         }
-        $estimates = $estimateRepository->findByIdDesc([
-            'user' => $this->getUser()
-        ]);
+
+        $user = $this->getUser();
+
+        $form = $this->createForm(EstimateFilterType::class);
+        $form->handleRequest($request);
+
+        $estimates = $estimateRepository->findByDateDesc($user);
+        
+        if ($form->isSubmitted() && $form->isValid()) {
+            $filterData = $form->get('type')->getData();
+
+            if ('1' == $filterData) {
+                $estimates = $estimateRepository->findByDateDesc($user);
+            } elseif ('2' == $filterData) {
+                $estimates = $estimateRepository->findByDateAsc($user);
+            }
+
+        }
+
 
         return $this->render('estimate/index.html.twig', [
+            'form' => $form->createView(),
             'estimates' => $estimates,
         ]);
     }
@@ -85,7 +103,7 @@ class EstimateController extends AbstractController
         }
 
         $pdfOptions = new Options();
-        $pdfOptions->set('defaultFont', 'Arial');
+        $pdfOptions->set(['defaultFont', 'Arial', 'isRemoteEnabled' => true]);
 
         $dompdf = new Dompdf($pdfOptions);
 
