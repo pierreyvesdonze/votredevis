@@ -40,14 +40,17 @@
                 </div>
                 <div>
                     <a href="{{ path('estimate_delete', {'id': estimate.id}) }}"
-                        onclick="return confirm('Supprimer ce devis ?')" 
-                        class="custom-btn">
+                        onclick="return confirm('Supprimer ce devis ?')" class="custom-btn">
                         <img src="{{ asset('assets/icons/delete.png') }}">
                     </a>
                 </div>
             </div>
 
             <br>
+            {% else %}
+            <div>
+                Aucun devis trouvé
+            </div>
 
         </div>
         {% endfor %}
