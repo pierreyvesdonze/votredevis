@@ -71,7 +71,7 @@ class EstimateController extends AbstractController
 
             $totalTva += $estimateLine->getQuantity() * $estimateLine->getPrice() * ($estimateLine->getTva() / 100);
 
-            $totalTtc += $totalHt + $totalTva;
+            $totalTtc = $totalHt + $totalTva;
         }
 
         return $this->render('estimate/show.html.twig', [
@@ -98,7 +98,7 @@ class EstimateController extends AbstractController
 
             $totalTva += $estimateLine->getQuantity() * $estimateLine->getPrice() * ($estimateLine->getTva() / 100);
 
-            $totalTtc += $totalHt + $totalTva;
+            $totalTtc = $totalHt + $totalTva;
         }
 
         $pdfOptions = new Options();
