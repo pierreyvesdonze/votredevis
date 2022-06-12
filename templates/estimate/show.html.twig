@@ -4,15 +4,15 @@
 <section class="estimate">
     {# HEADER #}
     <div class="row">
-        <div class="col-6">
+        {# <div class="col-6">
             <div class="logo">
                 <img src="{{ asset('assets/logo.png') }}">
             </div>
-        </div>
-        <div class="col-6">
+        </div> #}
+        <div class="col-12">
             <div class="estimate-ref">
-                <p>Devis : {{ estimate.id }}</p>
-                <p>Date : {{ estimate.date|date('d/m/y') }}</p>
+                <h1>Devis : {{ estimate.id }}</h1>
+                <h2>Date : {{ estimate.date|date('d/m/y') }}</h2>
             </div>
         </div>
     </div>
