@@ -175,7 +175,7 @@ FLEX
 ***********************************
 */
 .flex-center-section {
-  margin-top: 4%;
+  margin-top: 10px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -372,10 +372,19 @@ SEARCH & CONTROL
           align-items: center;
 }
 
+/*
+***********************************
+FOOTER
+***********************************
+*/
 .main-control {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+}
+
+.footer-nav {
+  margin-top: 10px;
 }
 
 /*
