@@ -70,6 +70,8 @@ class CustomerController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $customerRepository->add($customer, true);
 
+            $this->addFlash('success', 'Nouveau client créé !');
+
             return $this->redirectToRoute('customer_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -104,6 +106,8 @@ class CustomerController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $customerRepository->add($customer, true);
 
+            $this->addFlash('success', 'Client mis à jour !');
+
             return $this->redirectToRoute('customer_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -123,6 +127,8 @@ class CustomerController extends AbstractController
         if ($this->isCsrfTokenValid('delete' . $customer->getId(), $request->request->get('_token'))) {
             $customerRepository->remove($customer, true);
         }
+
+        $this->addFlash('success', 'Client supprimé ! ');
 
         return $this->redirectToRoute('customer_index', [], Response::HTTP_SEE_OTHER);
     }

@@ -7,10 +7,10 @@ var app = {
         * L I S T E N E R S
         * *****************************
         */
-        document.addEventListener('keyup', app.searchEstimate)
+        document.addEventListener('keyup', app.searchBar)
     },
 
-    searchEstimate: (evt) => {
+    searchBar: (evt) => {
         evt.preventDefault();
         
         let userInput = document.querySelector('.search-input').value;
