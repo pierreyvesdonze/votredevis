@@ -83,7 +83,7 @@ class EstimateController extends AbstractController
     }
 
     #[Route('/estimate/download/{id}', name: 'estimate_download')]
-    public function download(Estimate $estimate)
+    public function download(Estimate $estimate): Response
     {
         if (!$this->getUser()) {
             return $this->redirectToRoute('login');
@@ -119,6 +119,8 @@ class EstimateController extends AbstractController
         $dompdf->stream("Devis-".$estimate->getTitle().".pdf", [
             "Attachment" => true
         ]);
+
+        return new Response('ok');
     }
 
     #[Route('/create', name: 'estimate_create')]
