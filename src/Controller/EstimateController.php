@@ -89,6 +89,7 @@ class EstimateController extends AbstractController
         )
     {
         $estimates = $estimateRepository->findByCustomer($customer);
+        dump($estimates);
 
         return $this->render('estimate/estimates.customer.html.twig', [
             'estimates' => $estimates,
@@ -152,12 +153,11 @@ class EstimateController extends AbstractController
         $form->handleRequest($request);
 
         $estimate = new Estimate();
-        $estimate->setUser($user);
 
         if ($form->isSubmitted() && $form->isValid()) {        
 
             $dataEstimateLines = $form->get('estimate_line')->getData();
-
+            $estimate->setUser($user);
             $estimate->setDate($form->get('date')->getData());
             $estimate->setTitle($form->get('title')->getData());
             $estimate->setCustomer($form->get('customer')->getData());
@@ -171,10 +171,7 @@ class EstimateController extends AbstractController
                 $newEstimateLine->setPrice($estimateLine->getPrice());
                 $newEstimateLine->setTva($estimateLine->getTva());
 
-                $estimate->addEstimateLine($newEstimateLine);
-
-                $this->em->persist($estimateLine);
-             
+                $estimate->addEstimateLine($newEstimateLine);             
             }
             $this->em->persist($estimate);    
             $this->em->flush();
