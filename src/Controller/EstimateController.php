@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Customer;
 use App\Entity\Estimate;
 use App\Entity\EstimateLine;
 use App\Form\EstimateFilterType;
@@ -48,7 +49,6 @@ class EstimateController extends AbstractController
             }
         }
 
-
         return $this->render('estimate/index.html.twig', [
             'form' => $form->createView(),
             'estimates' => $estimates,
@@ -79,6 +79,20 @@ class EstimateController extends AbstractController
             'totalHt'  => $totalHt,
             'totalTva' => $totalTva,
             'totalTtc' => $totalTtc
+        ]);
+    }
+
+    #[Route('/estimates/customer/{id}', name: 'estimates_customer')]
+    public function showByCustomer(
+        Customer $customer,
+        EstimateRepository $estimateRepository
+        )
+    {
+        $estimates = $estimateRepository->findByCustomer($customer);
+
+        return $this->render('estimate/estimates.customer.html.twig', [
+            'estimates' => $estimates,
+            'customer' => $customer
         ]);
     }
 

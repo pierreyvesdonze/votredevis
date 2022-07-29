@@ -64,6 +64,10 @@ CUSTOM BTN
   background-color: transparent;
 }
 
+.custom-btn .custom-btn-center {
+  margin: auto;
+}
+
 .custom-btn img {
   width: 30px;
 }

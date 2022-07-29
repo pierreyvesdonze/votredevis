@@ -4,42 +4,37 @@
 
 {% block body %}
 <div class="flex-center-section">
-    <h1>Clients</h1>
+    <h1>Devis du client {{ customer.companyName }}</h1>
     <br>
     {# SEARCH #}
     {% include('search/_search.html.twig') %}
 
     <br>
-
-    {# FILTER #}
-    {% include('filter/_filterform.html.twig') %}
-        
-    <br>
     <div class="main-border-content">
-        {% for customer in customers %}
+        {% for estimate in estimates %}
         <div class="main-row estimate-line">
-            <h3>{{ customer.companyName }}</h3>
+            <h3>{{ estimate.title }}</h3>
             <div class="main-control">
                 <div>
-                    <a href="{{ path('customer_show', {'id': customer.id}) }}" class="custom-btn">
+                    <a href="{{ path('estimate', {'id': estimate.id}) }}" class="custom-btn">
                         <img src="{{ asset('assets/icons/show.png') }}">
                     </a>
                 </div>
                 <div>
-                    <a href="{{ path('customer_edit', {'id': customer.id}) }}" class="custom-btn">
+                    <a href="{{ path('estimate_edit', {'id': estimate.id}) }}" class="custom-btn">
                         <img src="{{ asset('assets/icons/edit.png') }}">
                     </a>
                 </div>
-                <div>
-                    {{ include('customer/_delete_form.html.twig') }}
-                </div>
+                {# <div>
+                    {{ include('estimate/_delete_form.html.twig') }}
+                </div> #}
             </div>
         </div>
 
         <br>
         {% else %}
         <div>
-            Aucun client trouvé
+            Aucun devis trouvé
         </div>
     </div>
     {% endfor %}
@@ -48,7 +43,7 @@
 <div class="footer-nav">
     <div class="d-flex justify-content-center
     ">
-        <a href="{{ path('customer_new') }}" class="custom-btn">Créer un client</a>
+        <a href="{{ path('customer_show', {'id':customer.id}) }}" class="custom-btn">Retour au client</a>
     </div>
 </div>
 {% endblock %}

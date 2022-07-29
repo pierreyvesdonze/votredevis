@@ -65,4 +65,16 @@ class EstimateRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    /**
+     * @return Estimate[] Returns an array of Estimate objects
+     */
+    public function findByCustomer($value): array
+    {
+        return $this->createQueryBuilder('e')
+            ->andWhere('e.customer = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getResult();
+    }
 }
