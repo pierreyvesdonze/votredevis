@@ -1,14 +1,6 @@
 @import "./responsive";
 @import "./settings";
 
-body {
-    height: 100vh;
-    background: var(--body-bg);
-    font-family: "Montserrat", sans-serif;
-    font-weight: 200;
-}
-
-
 /*
 ***********************************
 LOGO
@@ -66,6 +58,9 @@ MENU
         margin: 0;
     }
 }
+
+
+
 /*
 ***********************************
 FLEX
@@ -185,6 +180,16 @@ label {
     display: table-cell;
 }
 
+/*
+***********************************
+CUSTOMER
+***********************************
+*/
+.customers-list {
+    color: var(--primary-color);
+    font-size: 1.3em;
+}
+
 
 /*
 ***********************************
@@ -212,7 +217,10 @@ SEARCH & CONTROL
 .main-row {
     display: flex;
     flex-direction: column;
-    align-items: center
+    align-items: center;
+    div {
+        color: var(--secondary-color);
+    }
 }
 
 /*

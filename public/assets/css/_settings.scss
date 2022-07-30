@@ -1,10 +1,17 @@
 :root {
-  --body-bg: #222629;
+  --body-bg: radial-gradient(circle, rgba(34,38,41,1) 0%, rgb(30, 31, 32) 100%);
   --form-bg: #c2c9d0;
   --primary-color: rgb(228, 196, 19);
   --secondary-color: rgb(255, 255, 255);
   --container-color: #699be71c;
   --transition-time: 0.5s;
+}
+
+body {
+    height: 100vh;
+    background: var(--body-bg);
+    font-family: "Montserrat", sans-serif;
+    font-weight: 200;
 }
 
 body,
@@ -52,7 +59,7 @@ a {
     }
 }
 
-label {
+p, label, tr th, tr td {
   color: var(--secondary-color);
 }
 

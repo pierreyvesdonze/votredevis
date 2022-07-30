@@ -4,12 +4,19 @@ MEDIA QUERIES
 ***********************************
 */
 :root {
-  --body-bg: #222629;
+  --body-bg: radial-gradient(circle, rgba(34,38,41,1) 0%, rgb(30, 31, 32) 100%);
   --form-bg: #c2c9d0;
   --primary-color: rgb(228, 196, 19);
   --secondary-color: rgb(255, 255, 255);
   --container-color: #699be71c;
   --transition-time: 0.5s;
+}
+
+body {
+  height: 100vh;
+  background: var(--body-bg);
+  font-family: "Montserrat", sans-serif;
+  font-weight: 200;
 }
 
 body,
@@ -58,7 +65,7 @@ a:hover {
   color: var(--secondary-color);
 }
 
-label {
+p, label, tr th, tr td {
   color: var(--secondary-color);
 }
 
@@ -96,13 +103,6 @@ CUSTOM BTN
 
 .custom-btn:hover {
   background-color: var(--primary-color);
-}
-
-body {
-  height: 100vh;
-  background: var(--body-bg);
-  font-family: "Montserrat", sans-serif;
-  font-weight: 200;
 }
 
 /*
@@ -364,6 +364,16 @@ label {
 
 /*
 ***********************************
+CUSTOMER
+***********************************
+*/
+.customers-list {
+  color: var(--primary-color);
+  font-size: 1.3em;
+}
+
+/*
+***********************************
 USER INFOS
 ***********************************
 */
@@ -400,6 +410,10 @@ SEARCH & CONTROL
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.main-row div {
+  color: var(--secondary-color);
 }
 
 /*
