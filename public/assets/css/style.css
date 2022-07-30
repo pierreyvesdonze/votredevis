@@ -319,6 +319,7 @@ label {
   overflow-y: scroll;
   border-radius: 10px;
   background-color: var(--container-color);
+  color: var(--secondary-color);
 }
 
 @media (min-width: 1280px) {

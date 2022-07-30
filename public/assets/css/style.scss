@@ -151,7 +151,7 @@ label {
     overflow-y: scroll;
     border-radius: 10px;
     background-color: var(--container-color);
-    //background-color: var(--form-bg);
+    color: var(--secondary-color);
     @include xl {
         border: solid var(--form-bg);
         padding: 3em;
