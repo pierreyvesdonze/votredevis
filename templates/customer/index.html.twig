@@ -18,11 +18,11 @@
     <div class="main-border-content">
         {% for customer in customers %}
         <div class="main-row estimate-line">
-            <h3>
+        
             <a href="{{ path('customer_show', {'id': customer.id}) }}" class="custom-btn">
                     {{ customer.companyName }}
                 </a>
-            </h3>
+      
         </div>
 
         <br>

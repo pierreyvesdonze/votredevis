@@ -32,7 +32,7 @@ class EstimateLineType extends AbstractType
             ->add('price', NumberType::class, [
                 'label' => 'Prix HT en €',
                 'attr' => [
-                    'placeholder' => 'Prix HT'
+                    'placeholder' => 'Prix HT en €'
                 ]
             ])
             ->add('tva', NumberType::class, [

@@ -8,14 +8,6 @@ body {
     font-weight: 200;
 }
 
-a {
-    text-decoration: none;
-    color: var(--primary-color);
-
-    &:hover {
-        color: var(--primary-color);
-    }
-}
 
 /*
 ***********************************
@@ -44,7 +36,7 @@ MENU
         margin-top: 20px;
         cursor: pointer;
         font-size: 1.6em;
-
+        color: var(--primary-color);
         &:hover {
             font-weight: bold;
             color: var(--secondary-color);
@@ -110,6 +102,9 @@ ESTIMATE
 .new-estimate-form {
     display: flex;
     flex-direction: column;
+    .tags li div div {
+        margin-top: 15px;
+    }
 }
 
 .flex-center-section {
