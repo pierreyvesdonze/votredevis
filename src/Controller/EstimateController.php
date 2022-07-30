@@ -89,7 +89,6 @@ class EstimateController extends AbstractController
         )
     {
         $estimates = $estimateRepository->findByCustomer($customer);
-        dump($estimates);
 
         return $this->render('estimate/estimates.customer.html.twig', [
             'estimates' => $estimates,

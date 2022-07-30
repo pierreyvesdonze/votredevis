@@ -18,22 +18,11 @@
     <div class="main-border-content">
         {% for customer in customers %}
         <div class="main-row estimate-line">
-            <h3>{{ customer.companyName }}</h3>
-            <div class="main-control">
-                <div>
-                    <a href="{{ path('customer_show', {'id': customer.id}) }}" class="custom-btn">
-                        <img src="{{ asset('assets/icons/show.png') }}">
-                    </a>
-                </div>
-                <div>
-                    <a href="{{ path('customer_edit', {'id': customer.id}) }}" class="custom-btn">
-                        <img src="{{ asset('assets/icons/edit.png') }}">
-                    </a>
-                </div>
-                <div>
-                    {{ include('customer/_delete_form.html.twig') }}
-                </div>
-            </div>
+            <h3>
+            <a href="{{ path('customer_show', {'id': customer.id}) }}" class="custom-btn">
+                    {{ customer.companyName }}
+                </a>
+            </h3>
         </div>
 
         <br>

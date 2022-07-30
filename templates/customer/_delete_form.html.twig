@@ -1,4 +1,4 @@
-<form method="post" action="{{ path('customer_delete', {'id': customer.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce client ?');">
+<form method="post" action="{{ path('customer_delete', {'id': customer.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce client ? Tous les devis associés seront systématiquement perdus');">
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ customer.id) }}">
     <button class="custom-btn">
         <img src="{{ asset('assets/icons/delete.png') }}">
