@@ -92,10 +92,7 @@ CUSTOM BTN
   border-radius: 15px;
   padding: 0.5em;
   background-color: var(--secondary-color);
-}
-
-.custom-btn .custom-btn-center {
-  margin: auto;
+  color: var(--tertiary-color);
 }
 
 .custom-btn img {
