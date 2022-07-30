@@ -23,12 +23,6 @@ class EstimateLineType extends AbstractType
 
                 ]
             ])
-            ->add('date', DateType::class, [
-                'label' => 'Date',
-                'attr' => [
-                    'placeholder' => 'Date'
-                ]
-            ])
             ->add('quantity', IntegerType::class, [
                 'label' => 'Quantité',
                 'attr' => [

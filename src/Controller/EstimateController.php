@@ -165,7 +165,6 @@ class EstimateController extends AbstractController
                 $newEstimateLine = new EstimateLine();
 
                 $newEstimateLine->setDescription($estimateLine->getDescription());
-                $newEstimateLine->setDate($estimateLine->getdate());
                 $newEstimateLine->setQuantity($estimateLine->getQuantity());
                 $newEstimateLine->setPrice($estimateLine->getPrice());
                 $newEstimateLine->setTva($estimateLine->getTva());

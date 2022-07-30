@@ -16,9 +16,6 @@ class EstimateLine
     #[ORM\Column(type: 'string', length: 255)]
     private $description;
 
-    #[ORM\Column(type: 'date')]
-    private $date;
-
     #[ORM\Column(type: 'integer')]
     private $quantity;
 
@@ -46,18 +43,6 @@ class EstimateLine
     public function setDescription(string $description): self
     {
         $this->description = $description;
-
-        return $this;
-    }
-
-    public function getDate(): ?\DateTimeInterface
-    {
-        return $this->date;
-    }
-
-    public function setDate(\DateTimeInterface $date): self
-    {
-        $this->date = $date;
 
         return $this;
     }
