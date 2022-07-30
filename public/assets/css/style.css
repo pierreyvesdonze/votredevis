@@ -8,6 +8,7 @@ MEDIA QUERIES
   --form-bg: #c2c9d0;
   --primary-color: rgb(20, 22, 26);
   --secondary-color: rgb(255, 255, 255);
+  --container-color: #e8e8e8;
   --transition-time: 0.5s;
 }
 
@@ -204,10 +205,6 @@ ESTIMATE
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -217,10 +214,21 @@ ESTIMATE
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  margin-left: 20px;
 }
 
 .filter-form-flex div {
   margin-right: 30px;
+}
+
+.new-estimate-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .flex-center-section {
@@ -293,6 +301,7 @@ label {
   height: 80vh;
   overflow-y: scroll;
   border-radius: 10px;
+  background-color: var(--container-color);
 }
 
 @media (min-width: 1280px) {

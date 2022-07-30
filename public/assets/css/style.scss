@@ -97,14 +97,19 @@ ESTIMATE
 /*FILTER*/
 .filter-form {
     display: flex;
-    flex-direction: column;
     align-items: center;
 }
 .filter-form-flex {
     display: flex;
+    margin-left: 20px;
     div {
         margin-right: 30px;
     }
+}
+
+.new-estimate-form {
+    display: flex;
+    flex-direction: column;
 }
 
 .flex-center-section {
@@ -155,6 +160,7 @@ label {
     height: 80vh;
     overflow-y: scroll;
     border-radius: 10px;
+    background-color: var(--container-color);
     //background-color: var(--form-bg);
     @include xl {
         border: solid var(--form-bg);

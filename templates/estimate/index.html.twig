@@ -22,7 +22,7 @@
         {% for estimate in estimates %}
         <div class="main-row">
             <h5>
-                {{ estimate.title }} - {{ estimate.date|date('d/m/y')}}
+                {{ estimate.title }} - {{ estimate.customer.companyName}}
             </h5>
             <div class="main-control">
                 <div>
