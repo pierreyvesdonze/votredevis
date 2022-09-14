@@ -208,7 +208,6 @@ class EstimateController extends AbstractController
             foreach ($estimateLines as $estimateLine) {
 
                 $estimateLine->setDescription($estimateLine->getDescription());
-                $estimateLine->setDate($estimateLine->getdate());
                 $estimateLine->setQuantity($estimateLine->getQuantity());
                 $estimateLine->setPrice($estimateLine->getPrice());
                 $estimateLine->setTva($estimateLine->getTva());
