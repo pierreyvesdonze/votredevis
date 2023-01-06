@@ -23,12 +23,6 @@ class EstimateLineType extends AbstractType
 
                 ]
             ])
-            ->add('date', DateType::class, [
-                'label' => 'Date',
-                'attr' => [
-                    'placeholder' => 'Date'
-                ]
-            ])
             ->add('quantity', IntegerType::class, [
                 'label' => 'Quantité',
                 'attr' => [
@@ -38,7 +32,7 @@ class EstimateLineType extends AbstractType
             ->add('price', NumberType::class, [
                 'label' => 'Prix HT en €',
                 'attr' => [
-                    'placeholder' => 'Prix HT'
+                    'placeholder' => 'Prix HT en €'
                 ]
             ])
             ->add('tva', NumberType::class, [

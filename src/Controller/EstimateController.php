@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Customer;
 use App\Entity\Estimate;
 use App\Entity\EstimateLine;
 use App\Form\EstimateFilterType;
@@ -48,7 +49,6 @@ class EstimateController extends AbstractController
             }
         }
 
-
         return $this->render('estimate/index.html.twig', [
             'form' => $form->createView(),
             'estimates' => $estimates,
@@ -82,8 +82,22 @@ class EstimateController extends AbstractController
         ]);
     }
 
+    #[Route('/estimates/customer/{id}', name: 'estimates_customer')]
+    public function showByCustomer(
+        Customer $customer,
+        EstimateRepository $estimateRepository
+        )
+    {
+        $estimates = $estimateRepository->findByCustomer($customer);
+
+        return $this->render('estimate/estimates.customer.html.twig', [
+            'estimates' => $estimates,
+            'customer' => $customer
+        ]);
+    }
+
     #[Route('/estimate/download/{id}', name: 'estimate_download')]
-    public function download(Estimate $estimate)
+    public function download(Estimate $estimate): Response
     {
         if (!$this->getUser()) {
             return $this->redirectToRoute('login');
@@ -119,6 +133,8 @@ class EstimateController extends AbstractController
         $dompdf->stream("Devis-".$estimate->getTitle().".pdf", [
             "Attachment" => true
         ]);
+
+        return new Response('ok');
     }
 
     #[Route('/create', name: 'estimate_create')]
@@ -136,12 +152,11 @@ class EstimateController extends AbstractController
         $form->handleRequest($request);
 
         $estimate = new Estimate();
-        $estimate->setUser($user);
 
         if ($form->isSubmitted() && $form->isValid()) {        
 
             $dataEstimateLines = $form->get('estimate_line')->getData();
-
+            $estimate->setUser($user);
             $estimate->setDate($form->get('date')->getData());
             $estimate->setTitle($form->get('title')->getData());
             $estimate->setCustomer($form->get('customer')->getData());
@@ -150,15 +165,11 @@ class EstimateController extends AbstractController
                 $newEstimateLine = new EstimateLine();
 
                 $newEstimateLine->setDescription($estimateLine->getDescription());
-                $newEstimateLine->setDate($estimateLine->getdate());
                 $newEstimateLine->setQuantity($estimateLine->getQuantity());
                 $newEstimateLine->setPrice($estimateLine->getPrice());
                 $newEstimateLine->setTva($estimateLine->getTva());
 
-                $estimate->addEstimateLine($newEstimateLine);
-
-                $this->em->persist($estimateLine);
-             
+                $estimate->addEstimateLine($newEstimateLine);             
             }
             $this->em->persist($estimate);    
             $this->em->flush();
@@ -197,7 +208,6 @@ class EstimateController extends AbstractController
             foreach ($estimateLines as $estimateLine) {
 
                 $estimateLine->setDescription($estimateLine->getDescription());
-                $estimateLine->setDate($estimateLine->getdate());
                 $estimateLine->setQuantity($estimateLine->getQuantity());
                 $estimateLine->setPrice($estimateLine->getPrice());
                 $estimateLine->setTva($estimateLine->getTva());

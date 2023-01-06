@@ -4,11 +4,20 @@ MEDIA QUERIES
 ***********************************
 */
 :root {
-  --body-bg: #e0e0e0;
+  --body-bg: radial-gradient(circle, rgba(34,38,41,1) 0%, rgb(30, 31, 32) 100%);
   --form-bg: #c2c9d0;
-  --primary-color: rgb(20, 22, 26);
+  --primary-color: rgb(228, 196, 19);
   --secondary-color: rgb(255, 255, 255);
+  --tertiary-color: rgb(22, 23, 26);
+  --container-color: #699be71c;
   --transition-time: 0.5s;
+}
+
+body {
+  height: 100vh;
+  background: var(--body-bg);
+  font-family: "Montserrat", sans-serif;
+  font-weight: 200;
 }
 
 body,
@@ -40,6 +49,27 @@ input, textarea {
   border: none;
 }
 
+ul, ul li {
+  list-style-type: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--primary-color);
+}
+
+a {
+  text-decoration: none;
+  color: var(--bg-color);
+}
+
+a:hover {
+  color: var(--secondary-color);
+}
+
+p, label, tr th, tr td {
+  color: var(--secondary-color);
+}
+
 .hr {
   height: 1px;
   border: 0;
@@ -61,7 +91,8 @@ CUSTOM BTN
   margin: 0 10px;
   border-radius: 15px;
   padding: 0.5em;
-  background-color: transparent;
+  background-color: var(--secondary-color);
+  color: var(--tertiary-color);
 }
 
 .custom-btn img {
@@ -69,23 +100,7 @@ CUSTOM BTN
 }
 
 .custom-btn:hover {
-  background-color: var(--secondary-color);
-}
-
-body {
-  height: 100vh;
-  background: var(--body-bg);
-  font-family: "Montserrat", sans-serif;
-  font-weight: 200;
-}
-
-a {
-  text-decoration: none;
-  color: var(--primary-color);
-}
-
-a:hover {
-  color: var(--primary-color);
+  background-color: var(--primary-color);
 }
 
 /*
@@ -127,6 +142,7 @@ MENU
   margin-top: 20px;
   cursor: pointer;
   font-size: 1.6em;
+  color: var(--primary-color);
 }
 
 .menu .menu-item:hover {
@@ -200,10 +216,6 @@ ESTIMATE
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -213,10 +225,25 @@ ESTIMATE
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  margin-left: 20px;
 }
 
 .filter-form-flex div {
   margin-right: 30px;
+}
+
+.new-estimate-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.new-estimate-form .tags li div div {
+  margin-top: 15px;
 }
 
 .flex-center-section {
@@ -289,6 +316,8 @@ label {
   height: 80vh;
   overflow-y: scroll;
   border-radius: 10px;
+  background-color: var(--container-color);
+  color: var(--secondary-color);
 }
 
 @media (min-width: 1280px) {
@@ -330,6 +359,17 @@ label {
 
 .add-estimate-line-btn {
   display: table-cell;
+  color: var(--tertiary-color);
+}
+
+/*
+***********************************
+CUSTOMER
+***********************************
+*/
+.customers-list {
+  color: var(--primary-color);
+  font-size: 1.3em;
 }
 
 /*
@@ -370,6 +410,10 @@ SEARCH & CONTROL
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.main-row div {
+  color: var(--secondary-color);
 }
 
 /*

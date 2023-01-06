@@ -6,7 +6,7 @@ when@dev:
     framework:
         profiler: { only_exceptions: false }
 
-when@production:
+when@prod:
     web_profiler:
     toolbar: false
 

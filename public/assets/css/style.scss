@@ -1,22 +1,6 @@
 @import "./responsive";
 @import "./settings";
 
-body {
-    height: 100vh;
-    background: var(--body-bg);
-    font-family: "Montserrat", sans-serif;
-    font-weight: 200;
-}
-
-a {
-    text-decoration: none;
-    color: var(--primary-color);
-
-    &:hover {
-        color: var(--primary-color);
-    }
-}
-
 /*
 ***********************************
 LOGO
@@ -44,7 +28,7 @@ MENU
         margin-top: 20px;
         cursor: pointer;
         font-size: 1.6em;
-
+        color: var(--primary-color);
         &:hover {
             font-weight: bold;
             color: var(--secondary-color);
@@ -74,6 +58,9 @@ MENU
         margin: 0;
     }
 }
+
+
+
 /*
 ***********************************
 FLEX
@@ -97,13 +84,21 @@ ESTIMATE
 /*FILTER*/
 .filter-form {
     display: flex;
-    flex-direction: column;
     align-items: center;
 }
 .filter-form-flex {
     display: flex;
+    margin-left: 20px;
     div {
         margin-right: 30px;
+    }
+}
+
+.new-estimate-form {
+    display: flex;
+    flex-direction: column;
+    .tags li div div {
+        margin-top: 15px;
     }
 }
 
@@ -155,7 +150,8 @@ label {
     height: 80vh;
     overflow-y: scroll;
     border-radius: 10px;
-    //background-color: var(--form-bg);
+    background-color: var(--container-color);
+    color: var(--secondary-color);
     @include xl {
         border: solid var(--form-bg);
         padding: 3em;
@@ -182,6 +178,17 @@ label {
 
 .add-estimate-line-btn {
     display: table-cell;
+    color: var(--tertiary-color);
+}
+
+/*
+***********************************
+CUSTOMER
+***********************************
+*/
+.customers-list {
+    color: var(--primary-color);
+    font-size: 1.3em;
 }
 
 
@@ -211,7 +218,10 @@ SEARCH & CONTROL
 .main-row {
     display: flex;
     flex-direction: column;
-    align-items: center
+    align-items: center;
+    div {
+        color: var(--secondary-color);
+    }
 }
 
 /*

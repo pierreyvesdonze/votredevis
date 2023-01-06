@@ -1,7 +1,6 @@
-{{ form_start(form) }}
+{{ form_start(form, { 'attr' : { 'class': 'new-estimate-form' } }) }}
 {{ form_label(form.customer) }}
 {{ form_widget(form.customer) }}
-<a href="{{ path('customer_new') }}" class="custom-btn">Créer un client</a>
 <br>
 {{ form_label(form.date) }}
 <br>

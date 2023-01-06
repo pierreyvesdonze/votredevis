@@ -29,15 +29,12 @@ class EstimateType extends AbstractType
         $user = $this->token->getToken()->getUser();
         $builder
             ->add('date', DateType::class, [
-                'label' => 'Date',
-                'attr' => [
-                    'placeholder' => 'Date'
-                ]
+                'label' => 'Date de réalisation du devis',
             ])
             ->add('title', TextType::class, [
-                'label' => 'Titre',
+                'label' => false,
                 'attr' => [
-                    'placeholder' => 'Titre'
+                    'placeholder' => 'Titre du devis'
                 ]
             ])
             ->add('customer', EntityType::class, [

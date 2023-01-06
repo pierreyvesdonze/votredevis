@@ -1,11 +1,18 @@
 :root {
-  //var(--body-bg): url("../images/texture.webp") no-repeat fixed;
-  //var(--body-bg)-small: url("../images/texture-small.webp") no-repeat fixed;
-  --body-bg: #e0e0e0;
+  --body-bg: radial-gradient(circle, rgba(34,38,41,1) 0%, rgb(30, 31, 32) 100%);
   --form-bg: #c2c9d0;
-  --primary-color: rgb(20, 22, 26);
+  --primary-color: rgb(228, 196, 19);
   --secondary-color: rgb(255, 255, 255);
+  --tertiary-color: rgb(22, 23, 26);
+  --container-color: #699be71c;
   --transition-time: 0.5s;
+}
+
+body {
+    height: 100vh;
+    background: var(--body-bg);
+    font-family: "Montserrat", sans-serif;
+    font-weight: 200;
 }
 
 body,
@@ -16,6 +23,7 @@ html {
 .flex {
   display: flex;
 }
+
 
 table {
   width: 100%;
@@ -33,6 +41,27 @@ input, textarea {
   padding: .4em;
   outline: none;
   border: none;
+}
+
+ul, ul li {
+  list-style-type: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--primary-color)
+}
+
+a {
+    text-decoration: none;
+    color: var(--bg-color);
+
+    &:hover {
+        color: var(--secondary-color);
+    }
+}
+
+p, label, tr th, tr td {
+  color: var(--secondary-color);
 }
 
 .hr {
@@ -56,11 +85,12 @@ CUSTOM BTN
   margin: 0 10px;
   border-radius: 15px;
   padding: 0.5em;
-  background-color: transparent;
+  background-color: var(--secondary-color);
+  color: var(--tertiary-color);
   img {
     width: 30px;
   }
   &:hover {
-    background-color: var(--secondary-color);
+    background-color: var(--primary-color);
   }
 }
