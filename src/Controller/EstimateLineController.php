@@ -18,7 +18,7 @@ class EstimateLineController extends AbstractController
     /**
      * @Route("/estimate/line/delete", name="estimate_line_delete", methods={"POST"}, options={"expose"=true})
      */
-    public function index(
+    public function deleteLine(
         Request $request,
         EstimateLineRepository $estimateLineRepository
         ): Response
