@@ -12,53 +12,71 @@ LOGO
 
 /*
 ***********************************
+NAV
+***********************************
+*/
+.nav-item,
+.nav-link {
+    font-weight: bold;
+}
+
+/*
+***********************************
 MENU
 ***********************************
 */
 .menu {
-    overflow: auto;
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    height: 80vh;
     overflow-y: auto;
     transition: ease-in-out 0.22s;
-    .menu-item {
-        margin-top: 20px;
-        cursor: pointer;
-        font-size: 1.6em;
-        color: var(--primary-color);
-        &:hover {
-            font-weight: bold;
-            color: var(--secondary-color);
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.493);
-            transition: ease-in-out 0.22s;
-        }
+}
 
-        @include xs {
-            margin-top: 20% !important;
-        }
-        @include sm {
-            margin-top: 20% !important;
-        }
+.home-section {
+    width: 100%;
+    height: 100vh;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#home-section-5 {
+    @include xl {
+        width: 25% !important;
+    }
+    @include lg {
+        width: 25% !important;
+    }
+    @include md {
+        width: 25% !important;
+    }
+    span {
+        margin-bottom: 25px;
     }
 }
 
-.nav-link {
-    font-weight: bold !important;
+.home-big-title {
+    font-size: 2.5em;
+    color: var(--primary-color);
 }
 
-.large-nav {
-    margin: 0 250px;
-    @include xs {
-        margin: 0;
-    }
-    @include sm {
-        margin: 0;
-    }
+.home-arrow-link {
+    display: block;
+    text-align: center;
+    margin-top: 5%;
 }
 
+.arrow-down {
+    width: 15%;
+    transform: scale(1);
+    transition: ease-in-out .2s;
+    &:hover {
+        transform: scale(1.3);
+    }
+}
 
 
 /*

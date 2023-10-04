@@ -2,17 +2,31 @@
 
 {% block body %}
 <section class="menu">
-    <div class="menu-item">
-        <a href="{{ path('estimates') }}">Voir mes devis</a>
+    <div class="home-section" id="home-section-1">
+        <span class="home-big-title">Enregistrez votre entreprise</span>
+        <a href="#home-section-2" class="home-arrow-link" ><img src="{{ asset('assets/images/down-arrow.png') }}" alt="arrow-down" class="arrow-down"></a>
     </div>
-    <div class="menu-item">
-        <a href="{{ path('estimate_create') }}">Créer un devis</a>
+
+    <div class="home-section" id="home-section-2">
+        <span class="home-big-title">Créez votre carnet de clients</span>
+        <a href="#home-section-3" class="home-arrow-link" ><img src="{{ asset('assets/images/down-arrow.png') }}" alt="arrow-down" class="arrow-down"></a>
     </div>
-    <div class="menu-item">
-        <a href="{{ path('customer_index') }}">Voir mes clients</a>
+
+    <div class="home-section" id="home-section-3">
+        <span class="home-big-title">Construisez votre devis de A à Z</span>
+        <a href="#home-section-4" class="home-arrow-link" ><img src="{{ asset('assets/images/down-arrow.png') }}" alt="arrow-down" class="arrow-down"></a>
     </div>
-    <div class="menu-item">
-        <a href="{{ path('customer_new') }}">Créer un client</a>
+
+    <div class="home-section" id="home-section-4">
+        <span class="home-big-title">Téléchargez votre devis depuis n'importe où</span>
+        <a href="#home-section-5" class="home-arrow-link" ><img src="{{ asset('assets/images/down-arrow.png') }}" alt="arrow-down" class="arrow-down"></a>
+    </div>
+
+    <div class="home-section" id="home-section-5">
+        <span class="home-big-title">C'est parti !</span>
+        <a href="{{ path('register') }}" class="custom-btn">Créer un compte</a>
+        <span class="home-big-title">OU</span>
+        <a href="{{ path('login') }}" class="custom-btn">Me connecter</a>
     </div>
 </section>
 {% endblock %}
