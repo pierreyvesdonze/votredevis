@@ -24,9 +24,21 @@
 
     <div class="home-section" id="home-section-5">
         <span class="home-big-title">C'est parti !</span>
+
+        {% if app.user %}
+
+        <a href="{{ path('estimates') }}" class="custom-btn">Voir mes devis</a>
+
+        <br><br>
+        
+        <a href="{{ path('customer_index') }}" class="custom-btn">Voir mes clients</a>
+        
+        {% else %}
+        
         <a href="{{ path('register') }}" class="custom-btn">Créer un compte</a>
         <span class="home-big-title">OU</span>
         <a href="{{ path('login') }}" class="custom-btn">Me connecter</a>
+        {% endif %}
     </div>
 </section>
 {% endblock %}
