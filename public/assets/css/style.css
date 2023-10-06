@@ -138,6 +138,87 @@ MENU
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+@media (min-width: 1280px) {
+  #home-section-1 {
+    background-image: url("../images/votredevis-bg-1-xl.png");
+  }
+}
+@media (min-width: 992px) and (max-width: 1280px) {
+  #home-section-1 {
+    background-image: url("../images/votredevis-bg-1-lg.png");
+  }
+}
+@media (min-width: 768px) and (max-width: 992px) {
+  #home-section-1 {
+    background-image: url("../images/votredevis-bg-1-md.png");
+  }
+}
+@media (min-width: 576px) and (max-width: 768px) {
+  #home-section-1 {
+    background-image: url("../images/votredevis-bg-1-sm.png");
+  }
+}
+
+@media (min-width: 1280px) {
+  #home-section-2 {
+    background-image: url("../images/votredevis-bg-2-xl.png");
+  }
+}
+@media (min-width: 992px) and (max-width: 1280px) {
+  #home-section-2 {
+    background-image: url("../images/votredevis-bg-2-lg.png");
+  }
+}
+@media (min-width: 768px) and (max-width: 992px) {
+  #home-section-2 {
+    background-image: url("../images/votredevis-bg-2-md.png");
+  }
+}
+
+@media (min-width: 1280px) {
+  #home-section-3 {
+    background-image: url("../images/votredevis-bg-3-xl.png");
+  }
+}
+@media (min-width: 992px) and (max-width: 1280px) {
+  #home-section-3 {
+    background-image: url("../images/votredevis-bg-3-lg.png");
+  }
+}
+@media (min-width: 768px) and (max-width: 992px) {
+  #home-section-3 {
+    background-image: url("../images/votredevis-bg-3-md.png");
+  }
+}
+@media (min-width: 576px) and (max-width: 768px) {
+  #home-section-3 {
+    background-image: url("../images/votredevis-bg-3-sm.png");
+  }
+}
+
+@media (min-width: 1280px) {
+  #home-section-4 {
+    background-image: url("../images/votredevis-bg-4-xl.png");
+  }
+}
+@media (min-width: 992px) and (max-width: 1280px) {
+  #home-section-4 {
+    background-image: url("../images/votredevis-bg-4-lg.png");
+  }
+}
+@media (min-width: 768px) and (max-width: 992px) {
+  #home-section-4 {
+    background-image: url("../images/votredevis-bg-4-md.png");
+  }
+}
+@media (min-width: 576px) and (max-width: 768px) {
+  #home-section-4 {
+    background-image: url("../images/votredevis-bg-4-sm.png");
+  }
 }
 
 @media (min-width: 1280px) {
@@ -161,7 +242,7 @@ MENU
 
 .home-big-title {
   font-size: 2.5em;
-  color: var(--primary-color);
+  color: var(--secondary-color);
 }
 
 .home-arrow-link {

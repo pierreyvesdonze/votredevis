@@ -41,6 +41,64 @@ MENU
     display: flex;
     flex-direction: column;
     justify-content: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+#home-section-1 {
+    @include xl {
+        background-image: url('../images/votredevis-bg-1-xl.png');
+    }
+    @include lg {
+        background-image: url('../images/votredevis-bg-1-lg.png');
+    }
+    @include md {
+        background-image: url('../images/votredevis-bg-1-md.png');
+    }
+    @include sm {
+        background-image: url('../images/votredevis-bg-1-sm.png');
+    }
+}
+#home-section-2 {
+    @include xl {
+        background-image: url('../images/votredevis-bg-2-xl.png');
+    }
+    @include lg {
+        background-image: url('../images/votredevis-bg-2-lg.png');
+    }
+    @include md {
+        background-image: url('../images/votredevis-bg-2-md.png');
+    }
+}
+
+#home-section-3{
+    @include xl {
+        background-image: url('../images/votredevis-bg-3-xl.png');
+    }
+    @include lg {
+        background-image: url('../images/votredevis-bg-3-lg.png');
+    }
+    @include md {
+        background-image: url('../images/votredevis-bg-3-md.png');
+    }
+    @include sm {
+        background-image: url('../images/votredevis-bg-3-sm.png');
+    }
+}
+
+#home-section-4{
+    @include xl {
+        background-image: url('../images/votredevis-bg-4-xl.png');
+    }
+    @include lg {
+        background-image: url('../images/votredevis-bg-4-lg.png');
+    }
+    @include md {
+        background-image: url('../images/votredevis-bg-4-md.png');
+    }
+    @include sm {
+        background-image: url('../images/votredevis-bg-4-sm.png');
+    }
 }
 
 #home-section-5 {
@@ -60,7 +118,7 @@ MENU
 
 .home-big-title {
     font-size: 2.5em;
-    color: var(--primary-color);
+    color: var(--secondary-color);
 }
 
 .home-arrow-link {
